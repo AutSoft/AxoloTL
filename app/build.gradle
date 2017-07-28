@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion gradle.ext.compileSdkVersion
+	buildToolsVersion gradle.ext.buildToolsVersion
+	defaultConfig {
+		applicationId "hu.axolotl.app"
+		minSdkVersion gradle.ext.minSdkVersion
+		targetSdkVersion gradle.ext.targetSdkVersion
+		versionCode 1
+		versionName "1.0"
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+	}
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
+}
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+	androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+		exclude group: 'com.android.support', module: 'support-annotations'
+	})
+	compile gradle.ext.dep_appcompat
+	compile 'javax.inject:javax.inject:1'
+
+	compile gradle.ext.dep_stetho
+
+	compile project(':tasklib-core')
+	compile project(':tasklib')
+	compile project(':tasklib-stetho')
+	compile project(':tasklib')
+	annotationProcessor project(':taskcompiler')
+
+	testCompile gradle.ext.dep_junit
+}

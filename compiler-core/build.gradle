@@ -1,0 +1,32 @@
+apply plugin: 'java'
+
+targetCompatibility = '1.7'
+sourceCompatibility = '1.7'
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile gradle.ext.dep_javapoet
+	compile gradle.ext.dep_guava
+}
+
+apply plugin: 'maven-publish'
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			groupId gradle.ext.taskLibGroupId
+			artifactId project.getName()
+			version = gradle.ext.taskLibVersion
+			from components.java
+
+			pom.withXml {
+				def root = asNode()
+				def license = root.appendNode('licenses').appendNode('license')
+				license.appendNode('name', 'The Apache Software License, Version 2.0')
+				license.appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0.txt')
+				license.appendNode('distribution', 'repo')
+			}
+		}
+	}
+}
+

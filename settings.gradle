@@ -1,0 +1,26 @@
+include ':app', ':tasklib', ':taskcompiler', ':tasklib-core', ':compiler-core', ':tasklib-stetho', ':tasklib-test'
+
+
+gradle.ext.taskLibGroupId = "hu.axolotl"
+gradle.ext.taskLibVersion = "5.0.0-SNAPSHOT"
+
+
+gradle.ext.buildToolsVersion = "25.0.2"
+gradle.ext.compileSdkVersion = 25
+gradle.ext.minSdkVersion = 14
+gradle.ext.targetSdkVersion = 25
+
+gradle.ext.jacoco_version = "0.7.7.201606060606"
+
+gradle.ext.dep_appcompat = 'com.android.support:appcompat-v7:25.2.0'
+gradle.ext.dep_junit = 'junit:junit:4.12'
+gradle.ext.dep_rxjava = 'io.reactivex.rxjava2:rxjava:2.0.2'
+gradle.ext.dep_googleTruth = 'com.google.truth:truth:0.32'
+gradle.ext.dep_javapoet = 'com.squareup:javapoet:1.7.0'
+gradle.ext.dep_stetho = 'com.facebook.stetho:stetho:1.4.2'
+gradle.ext.dep_gson = 'com.google.code.gson:gson:2.8.0'
+gradle.ext.dep_guava = 'com.google.guava:guava:20.0'
+gradle.ext.dep_mockito = 'org.mockito:mockito-all:1.10.8'
+gradle.ext.dep_powermock = 'org.powermock:powermock-core:1.6.2'
+gradle.ext.dep_powermock_junit = 'org.powermock:powermock-module-junit4:1.6.2'
+gradle.ext.dep_powermock_mockito = 'org.powermock:powermock-api-mockito:1.6.2'
