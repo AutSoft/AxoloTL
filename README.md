@@ -4,12 +4,12 @@ Axolo Task Library
 ## Dependencies (from jitpack)
 
 ```
-compile 'com.github.AutSoft.AxoloTL:compiler-core:1.0.0'
-compile 'com.github.AutSoft.AxoloTL:tasklib:1.0.0'
-compile 'com.github.AutSoft.AxoloTL:tasklib-core:1.0.0'
-compile 'com.github.AutSoft.AxoloTL:tasklib-stetho:1.0.0'
-testCompile 'com.github.AutSoft.AxoloTL:tasklib-test:1.0.0'
-annotationProcessor 'com.github.AutSoft.AxoloTL:taskcompiler:1.0.0'
+compile 'com.github.AutSoft.AxoloTL:compiler-core:1.0.1'
+compile 'com.github.AutSoft.AxoloTL:tasklib:1.0.1'
+compile 'com.github.AutSoft.AxoloTL:tasklib-core:1.0.1'
+compile 'com.github.AutSoft.AxoloTL:tasklib-stetho:1.0.1'
+testCompile 'com.github.AutSoft.AxoloTL:tasklib-test:1.0.1'
+annotationProcessor 'com.github.AutSoft.AxoloTL:taskcompiler:1.0.1'
 ```
 
 ## Task creation
