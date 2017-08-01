@@ -1,83 +1,64 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = gradle.ext.githubGroup
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
 android {
-	compileSdkVersion gradle.ext.compileSdkVersion
-	buildToolsVersion gradle.ext.buildToolsVersion
+    compileSdkVersion gradle.ext.compileSdkVersion
+    buildToolsVersion gradle.ext.buildToolsVersion
 
-	defaultConfig {
-		minSdkVersion gradle.ext.minSdkVersion
-		targetSdkVersion gradle.ext.targetSdkVersion
-		versionCode 2
-		versionName "DO_NOT_EDIT"
+    defaultConfig {
+        minSdkVersion gradle.ext.minSdkVersion
+        targetSdkVersion gradle.ext.targetSdkVersion
+        versionCode 2
+        versionName "DO_NOT_EDIT"
 
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-	}
-	buildTypes {
-		release {
-			//minifyEnabled false
-			//proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-			consumerProguardFiles 'proguard-rules.pro'
-		}
-	}
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            //minifyEnabled false
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
-	androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-		exclude group: 'com.android.support', module: 'support-annotations'
-	})
-	compile gradle.ext.dep_appcompat
-	compile gradle.ext.dep_stetho
-	compile gradle.ext.dep_gson
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile gradle.ext.dep_appcompat
+    compile gradle.ext.dep_stetho
+    compile gradle.ext.dep_gson
 
-	compile project(':tasklib-core')
-	compile project(':tasklib')
+    compile project(':tasklib-core')
+    compile project(':tasklib')
 
-	testCompile gradle.ext.dep_junit
-}
-
-apply plugin: 'maven-publish'
-
-publishing {
-	publications {
-		aar(MavenPublication) {
-			groupId gradle.ext.taskLibGroupId
-			artifactId project.getName()
-			version = gradle.ext.taskLibVersion
-			artifact("${project.buildDir}/outputs/aar/${project.getName()}-release.aar")
-			artifact androidJavadocsJar
-
-			pom.withXml {
-				def root = asNode()
-				def license = root.appendNode('licenses').appendNode('license')
-				license.appendNode('name', 'The Apache Software License, Version 2.0')
-				license.appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0.txt')
-				license.appendNode('distribution', 'repo')
-			}
-		}
-	}
+    testCompile gradle.ext.dep_junit
 }
 
 task androidJavadocs(type: Javadoc) {
-	source = android.sourceSets.main.java.srcDirs
-	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
 task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-	classifier = 'javadoc'
-	from androidJavadocs.destinationDir
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
 }
 
 task androidSourcesJar(type: Jar) {
-	classifier = 'sources'
-	from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
 }
 
 artifacts {
-	archives androidSourcesJar
-	archives androidJavadocsJar
+    archives androidSourcesJar
+    archives androidJavadocsJar
 }
 
