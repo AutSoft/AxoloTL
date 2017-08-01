@@ -1,61 +1,49 @@
 apply plugin: 'java'
+apply plugin: 'maven'
 apply plugin: 'jacoco'
+
+group = gradle.ext.githubGroup
 
 targetCompatibility = '1.7'
 sourceCompatibility = '1.7'
 
 jacoco {
-	toolVersion = gradle.ext.jacoco_version
+    toolVersion = gradle.ext.jacoco_version
 }
 
 configurations.all {
-	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 dependencies {
-	compile fileTree(include: ['*.jar'], dir: 'libs')
-	compile 'com.google.auto.service:auto-service:1.0-rc2'
-	compile 'com.google.auto:auto-common:0.6'
-	compile 'javax.inject:javax.inject:1'
-	compile project(':compiler-core')
-	compile project(':tasklib-core')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.google.auto.service:auto-service:1.0-rc2'
+    compile 'com.google.auto:auto-common:0.6'
+    compile 'javax.inject:javax.inject:1'
+    compile project(':compiler-core')
+    compile project(':tasklib-core')
 
-	testCompile project(':tasklib-core')
-	testCompile gradle.ext.dep_junit
-	testCompile gradle.ext.dep_googleTruth
-	testCompile 'com.google.testing.compile:compile-testing:0.8'
-	testCompile 'org.glassfish:javax.annotation:10.0-b28'
-	//testCompile files(System.getenv("JAVA_HOME") + "/lib/tools.jar")
-	testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
-	testRuntime files('build/resources/test')
+    testCompile project(':tasklib-core')
+    testCompile gradle.ext.dep_junit
+    testCompile gradle.ext.dep_googleTruth
+    testCompile 'com.google.testing.compile:compile-testing:0.8'
+    testCompile 'org.glassfish:javax.annotation:10.0-b28'
+    testCompile files(System.getenv("JAVA_HOME") + "/lib/tools.jar")
+    //testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
+    testRuntime files('build/resources/test')
 }
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
-apply plugin: 'maven-publish'
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
 
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			groupId gradle.ext.taskLibGroupId
-			artifactId project.getName()
-			version = gradle.ext.taskLibVersion
-			//artifact sourcesJar
-			from components.java
-
-			pom.withXml {
-				asNode().dependencies.'*'.findAll() {
-					it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
-						dep.name == it.artifactId.text()
-					}
-				}.each() {
-					it.scope*.value = 'compile'
-				}
-				def root = asNode()
-				def license = root.appendNode('licenses').appendNode('license')
-				license.appendNode('name', 'The Apache Software License, Version 2.0')
-				license.appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0.txt')
-				license.appendNode('distribution', 'repo')
-			}
-		}
-	}
+artifacts {
+    archives sourcesJar
+    archives javadocJar
 }

@@ -1,40 +1,37 @@
 apply plugin: 'java'
+apply plugin: 'maven'
+
+group = gradle.ext.githubGroup
 
 targetCompatibility = "1.7"
 sourceCompatibility = "1.7"
 
 apply plugin: 'jacoco'
 jacoco {
-	toolVersion = gradle.ext.jacoco_version
+    toolVersion = gradle.ext.jacoco_version
 }
 
 dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 
-	compile gradle.ext.dep_rxjava
-	compile gradle.ext.dep_guava
+    compile gradle.ext.dep_rxjava
+    compile gradle.ext.dep_guava
 
-	testCompile gradle.ext.dep_junit
-	testCompile gradle.ext.dep_googleTruth
+    testCompile gradle.ext.dep_junit
+    testCompile gradle.ext.dep_googleTruth
 }
 
-apply plugin: 'maven-publish'
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			groupId gradle.ext.taskLibGroupId
-			artifactId project.getName()
-			version = gradle.ext.taskLibVersion
-			from components.java
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
 
-			pom.withXml {
-				def root = asNode()
-				def license = root.appendNode('licenses').appendNode('license')
-				license.appendNode('name', 'The Apache Software License, Version 2.0')
-				license.appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0.txt')
-				license.appendNode('distribution', 'repo')
-			}
-		}
-	}
+artifacts {
+    archives sourcesJar
+    archives javadocJar
 }
