@@ -10,11 +10,11 @@ import io.reactivex.schedulers.Schedulers;
 
 public abstract class TaskSchedulers {
 
-	public static final int SINGLE = -1;
-	public static final int COMPUTATION = -2;
-	public static final int IO = -3;
-	public static final int TRAMPOLINE = -4;
-	public static final int NEW_THREAD = -5;
+	public static final int SINGLE = 0;
+	public static final int COMPUTATION = -1;
+	public static final int IO = -2;
+	public static final int TRAMPOLINE = -3;
+	public static final int NEW_THREAD = -4;
 
 	private static Map<Integer, Scheduler> schedulerMap = new HashMap<>();
 
