@@ -21,19 +21,23 @@ import hu.axolotl.tasklib.util.TaskLogger;
 
 public class AndroidTaskLogger extends TaskLogger {
 
-	@Override
-	protected void logV(String tag, String message) {
-		Log.v(tag, message);
-	}
+    @Override
+    protected void logV(String tag, String message) {
+        Log.v(tag, message);
+    }
 
-	@Override
-	protected void logD(String tag, String message) {
-		Log.d(tag, message);
-	}
+    @Override
+    protected void logD(String tag, String message) {
+        Log.d(tag, message);
+    }
 
-	@Override
-	protected void logE(String tag, String message) {
-		Log.e(tag, message);
-	}
+    @Override
+    protected void logE(String tag, String message) {
+        Log.e(tag, message);
+    }
 
+    @Override
+    protected void logE(String tag, String message, Exception exception) {
+        Log.e(tag, message, exception);
+    }
 }

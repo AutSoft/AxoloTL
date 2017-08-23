@@ -17,58 +17,55 @@ package hu.axolotl.tasklib.util;
 
 public abstract class TaskLogger {
 
-	private static TaskLogger instance;
-	private static TaskLogger customInstance;
+    private static TaskLogger instance;
+    private static TaskLogger customInstance;
 
-	public static void setCustomInstance(TaskLogger testInstance) {
-		TaskLogger.customInstance = testInstance;
-	}
+    public static void setCustomInstance(TaskLogger testInstance) {
+        TaskLogger.customInstance = testInstance;
+    }
 
-	private static TaskLogger getInstance() {
-		if (customInstance != null) {
-			return customInstance;
-		}
-		if (instance == null) {
-			instance = new JavaTaskLogger();
-		}
-		return instance;
-	}
+    private static TaskLogger getInstance() {
+        if (customInstance != null) {
+            return customInstance;
+        }
+        if (instance == null) {
+            instance = new JavaTaskLogger();
+        }
+        return instance;
+    }
 
-	public static void v(String tag, String message) {
-		getInstance().logV(tag, message);
-	}
+    public static void v(String tag, String message) {
+        getInstance().logV(tag, message);
+    }
 
-	public static void d(String tag, String message) {
-		getInstance().logD(tag, message);
-	}
+    public static void d(String tag, String message) {
+        getInstance().logD(tag, message);
+    }
 
-	public static void e(String tag, String message, Exception exception) {
-		getInstance().logE(tag, message, exception);
-	}
+    public static void e(String tag, String message, Exception exception) {
+        getInstance().logE(tag, message, exception);
+    }
 
-	public static void e(String tag, String message) {
-		getInstance().logE(tag, message);
-	}
+    public static void e(String tag, String message) {
+        getInstance().logE(tag, message);
+    }
 
-	public static void exception(String tag, Exception ex) {
-		getInstance().logException(tag, ex);
-	}
+    public static void exception(String tag, Exception ex) {
+        getInstance().logException(tag, ex);
+    }
 
-	protected abstract void logV(String tag, String message);
+    protected abstract void logV(String tag, String message);
 
-	protected abstract void logD(String tag, String message);
+    protected abstract void logD(String tag, String message);
 
-	protected abstract void logE(String tag, String message);
+    protected abstract void logE(String tag, String message);
 
-	private void logE(String tag, String message, Exception exception) {
-		logE(tag, message);
-		logException(tag, exception);
-	}
+    protected void logE(String tag, String message, Exception exception) {
+        logE(tag, message);
+        logException(tag, exception);
+    }
 
-	private void logException(String tag, Exception ex) {
-		logE(tag, "Exception");
-		for (StackTraceElement stackTraceElement : ex.getStackTrace()) {
-			logE(tag, "\t" + stackTraceElement);
-		}
-	}
+    private void logException(String tag, Exception ex) {
+        ex.printStackTrace();
+    }
 }
