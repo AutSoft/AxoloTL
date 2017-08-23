@@ -21,33 +21,33 @@ import hu.axolotl.tasklib.util.TaskLogger;
 
 public abstract class MethodDescriptor {
 
-	private static final String TAG = MethodDescriptor.class.getSimpleName();
+    private static final String TAG = MethodDescriptor.class.getSimpleName();
 
-	private Class requestClass;
-	protected Method method;
+    private Class requestClass;
+    protected Method method;
 
-	public MethodDescriptor(Class requestClass, Method method) {
-		this.requestClass = requestClass;
-		this.method = method;
-	}
+    public MethodDescriptor(Class requestClass, Method method) {
+        this.requestClass = requestClass;
+        this.method = method;
+    }
 
-	protected Object invokeMethod(Object object, Object... args) throws InvokeException {
-		try {
-			method.setAccessible(true);
-			Object ret = method.invoke(object, args);
-			TaskLogger.v(TAG, "After invokeMethod...");
-			return ret;
-		} catch (Exception e) {
-			TaskLogger.e(TAG, "invokeMethod " + getMethodName() + "(" + requestClass.getSimpleName() + ")  exception - Exception", e);
-			throw new InvokeException(requestClass, method, e);
-		}
-	}
+    protected Object invokeMethod(Object object, Object... args) throws InvokeException {
+        try {
+            method.setAccessible(true);
+            Object ret = method.invoke(object, args);
+            TaskLogger.v(TAG, "After invokeMethod...");
+            return ret;
+        } catch (Exception e) {
+            TaskLogger.e(TAG, "invokeMethod " + getMethodName() + "(" + requestClass.getSimpleName() + ")  exception - Exception", e);
+            throw new InvokeException(requestClass, method, e);
+        }
+    }
 
-	public String getMethodName() {
-		return method.getName();
-	}
+    public String getMethodName() {
+        return method.getName();
+    }
 
-	public Class getRequestClass() {
-		return requestClass;
-	}
+    public Class getRequestClass() {
+        return requestClass;
+    }
 }

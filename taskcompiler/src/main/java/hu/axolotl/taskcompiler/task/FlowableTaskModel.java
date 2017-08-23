@@ -23,27 +23,27 @@ import hu.autsoft.compiler.TypeHelper;
 import hu.axolotl.tasklib.base.BaseFlowableTask;
 
 public class FlowableTaskModel extends BaseTaskModel {
-	FlowableTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
-		super(workerClass, workerTaskHelperClass, methodElement);
-	}
+    FlowableTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
+        super(workerClass, workerTaskHelperClass, methodElement);
+    }
 
-	@Override
-	protected TypeHelper getReturnType(TypeHelper fullReturnType) {
-		return fullReturnType.getParamTypeArgument();
-	}
+    @Override
+    protected TypeHelper getReturnType(TypeHelper fullReturnType) {
+        return fullReturnType.getParamTypeArgument();
+    }
 
-	@Override
-	protected TypeName getSuperClass() {
-		return convertReturnGeneric(BaseFlowableTask.class);
-	}
+    @Override
+    protected TypeName getSuperClass() {
+        return convertReturnGeneric(BaseFlowableTask.class);
+    }
 
-	@Override
-	protected String getRunFunctionName() {
-		return "getRunFlowable";
-	}
+    @Override
+    protected String getRunFunctionName() {
+        return "getRunFlowable";
+    }
 
-	@Override
-	protected boolean needAgentParamForRunFunction() {
-		return false;
-	}
+    @Override
+    protected boolean needAgentParamForRunFunction() {
+        return false;
+    }
 }

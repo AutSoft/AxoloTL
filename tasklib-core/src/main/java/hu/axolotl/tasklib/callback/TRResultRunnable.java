@@ -15,34 +15,34 @@
  */
 package hu.axolotl.tasklib.callback;
 
-import hu.axolotl.tasklib.descriptor.InvokeException;
-import hu.axolotl.tasklib.base.BaseTask;
 import hu.axolotl.tasklib.InlineTaskListener;
+import hu.axolotl.tasklib.base.BaseTask;
 import hu.axolotl.tasklib.descriptor.ClassDescriptor;
+import hu.axolotl.tasklib.descriptor.InvokeException;
 import hu.axolotl.tasklib.descriptor.ResultMethodDescriptor;
 
 public class TRResultRunnable extends BaseTaskCallbackRunnable {
 
-	InlineTaskListener innerListener;
+    InlineTaskListener innerListener;
 
-	public TRResultRunnable(ClassDescriptor classDescriptor, Object target, BaseTask task, InlineTaskListener innerListener) {
-		super(classDescriptor, target, task);
-		this.innerListener = innerListener;
-	}
+    public TRResultRunnable(ClassDescriptor classDescriptor, Object target, BaseTask task, InlineTaskListener innerListener) {
+        super(classDescriptor, target, task);
+        this.innerListener = innerListener;
+    }
 
-	@Override
-	public void run() {
-		try {
-			if (innerListener != null) {
-				innerListener.onTaskResult(task);
-			} else {
-				ResultMethodDescriptor md = classDescriptor.getResultMethod(task.getClass());
-				if (md != null) {
-					md.invoke(target, task);
-				}
-			}
-		} catch (InvokeException ex) {
-			innerException = ex;
-		}
-	}
+    @Override
+    public void run() {
+        try {
+            if (innerListener != null) {
+                innerListener.onTaskResult(task);
+            } else {
+                ResultMethodDescriptor md = classDescriptor.getResultMethod(task.getClass());
+                if (md != null) {
+                    md.invoke(target, task);
+                }
+            }
+        } catch (InvokeException ex) {
+            innerException = ex;
+        }
+    }
 }

@@ -17,7 +17,7 @@ package hu.axolotl.tasklib.stetho.exception;
 
 public class GetParamInvokeException extends RuntimeException {
 
-	public GetParamInvokeException(Throwable cause) {
-		super(cause);
-	}
+    public GetParamInvokeException(Throwable cause) {
+        super(cause);
+    }
 }

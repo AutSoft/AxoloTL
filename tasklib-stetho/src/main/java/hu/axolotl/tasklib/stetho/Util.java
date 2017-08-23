@@ -17,6 +17,6 @@ package hu.axolotl.tasklib.stetho;
 
 public class Util {
 
-	public static final String UTF8 = "UTF8";
+    public static final String UTF8 = "UTF8";
 
 }

@@ -20,25 +20,25 @@ import hu.axolotl.tasklib.callback.BaseTaskCallbackRunnable;
 
 public class ReflectionTestTaskEngineHolder extends BaseTaskEngineHolder {
 
-	public ReflectionTestTaskEngineHolder(Object target) {
-		super(target);
-	}
+    public ReflectionTestTaskEngineHolder(Object target) {
+        super(target);
+    }
 
-	@Override
-	protected void postToProperThread(BaseTaskCallbackRunnable runnable) {
-		throw new RuntimeException("Reflection only");
-	}
+    @Override
+    protected void postToProperThread(BaseTaskCallbackRunnable runnable) {
+        throw new RuntimeException("Reflection only");
+    }
 
-	public boolean hasResultMethod(Class taskClass) {
-		return classDescriptor.getResultMethod(taskClass) != null;
-	}
+    public boolean hasResultMethod(Class taskClass) {
+        return classDescriptor.getResultMethod(taskClass) != null;
+    }
 
-	public boolean hasProgressMethod(Class taskClass) {
-		return classDescriptor.getProgressMethod(taskClass) != null;
-	}
+    public boolean hasProgressMethod(Class taskClass) {
+        return classDescriptor.getProgressMethod(taskClass) != null;
+    }
 
-	public boolean hasGlobalErrorMethod() {
-		return classDescriptor.getGlobalErrorMethod() != null;
-	}
+    public boolean hasGlobalErrorMethod() {
+        return classDescriptor.getGlobalErrorMethod() != null;
+    }
 
 }

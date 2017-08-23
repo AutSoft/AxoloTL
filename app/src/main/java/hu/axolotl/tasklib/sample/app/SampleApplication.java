@@ -19,16 +19,18 @@ import android.app.Application;
 
 import com.facebook.stetho.Stetho;
 
+import hu.axolotl.tasklib.android.AndroidTaskInitializer;
 import hu.axolotl.tasklib.stetho.TaskLibStetho;
 
 public class SampleApplication extends Application {
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
+    @Override
+    public void onCreate() {
+        super.onCreate();
 
-		Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this);
 
-		TaskLibStetho.init();
-	}
+        AndroidTaskInitializer.init();
+        TaskLibStetho.init();
+    }
 }

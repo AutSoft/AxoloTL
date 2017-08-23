@@ -20,8 +20,8 @@ import hu.axolotl.tasklib.TaskAgent;
 
 public class SimpleTask extends BaseTestTask {
 
-	@Override
-	public String run(TaskAgent agent) {
-		return getClass().getSimpleName();
-	}
+    @Override
+    public String run(TaskAgent agent) {
+        return getClass().getSimpleName();
+    }
 }

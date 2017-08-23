@@ -21,12 +21,12 @@ import hu.axolotl.tasklib.base.BaseTask;
 
 public class ResultMethodDescriptor extends MethodDescriptor {
 
-	public ResultMethodDescriptor(Class requestClass, Method method) {
-		super(requestClass, method);
-	}
+    public ResultMethodDescriptor(Class requestClass, Method method) {
+        super(requestClass, method);
+    }
 
-	public void invoke(Object object, BaseTask baseTask) throws InvokeException {
-		invokeMethod(object, baseTask);
-	}
+    public void invoke(Object object, BaseTask baseTask) throws InvokeException {
+        invokeMethod(object, baseTask);
+    }
 
 }

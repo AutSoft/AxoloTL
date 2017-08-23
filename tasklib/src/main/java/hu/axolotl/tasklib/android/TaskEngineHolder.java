@@ -23,16 +23,16 @@ import hu.axolotl.tasklib.callback.BaseTaskCallbackRunnable;
 
 public class TaskEngineHolder extends BaseTaskEngineHolder {
 
-	private final Handler handler;
+    private final Handler handler;
 
-	public TaskEngineHolder(Object target) {
-		super(target);
-		handler = new Handler(Looper.getMainLooper());
-	}
+    public TaskEngineHolder(Object target) {
+        super(target);
+        handler = new Handler(Looper.getMainLooper());
+    }
 
-	@Override
-	protected void postToProperThread(BaseTaskCallbackRunnable runnable) {
-		handler.post(runnable);
-	}
+    @Override
+    protected void postToProperThread(BaseTaskCallbackRunnable runnable) {
+        handler.post(runnable);
+    }
 
 }

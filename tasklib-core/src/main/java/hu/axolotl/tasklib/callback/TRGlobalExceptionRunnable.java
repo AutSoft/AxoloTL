@@ -26,41 +26,41 @@ import hu.axolotl.tasklib.util.TaskLogger;
 
 public class TRGlobalExceptionRunnable extends BaseTaskCallbackRunnable {
 
-	public static final String TAG = TRGlobalExceptionRunnable.class.getSimpleName();
+    public static final String TAG = TRGlobalExceptionRunnable.class.getSimpleName();
 
-	BlockingQueue<Boolean> queue;
-	GlobalError globalError;
+    BlockingQueue<Boolean> queue;
+    GlobalError globalError;
 
-	public TRGlobalExceptionRunnable(ClassDescriptor classDescriptor, Object target, BaseTask task, GlobalError globalError, BlockingQueue<Boolean> queue) {
-		super(classDescriptor, target, task);
-		this.queue = queue;
-		this.globalError = globalError;
-	}
+    public TRGlobalExceptionRunnable(ClassDescriptor classDescriptor, Object target, BaseTask task, GlobalError globalError, BlockingQueue<Boolean> queue) {
+        super(classDescriptor, target, task);
+        this.queue = queue;
+        this.globalError = globalError;
+    }
 
-	@Override
-	public void run() {
-		TaskLogger.d(TAG, "run");
-		boolean handled = false;
-		try {
-			TaskLogger.d(TAG, getClass().getSimpleName() + " task: " + task.getClass().getSimpleName());
-			GlobalErrorMethodDescriptor md = classDescriptor.getGlobalErrorMethod();
-			if (md != null) {
-				handled = (Boolean) md.invoke(target, globalError);
-				if (handled) {
-					TaskLogger.d(TAG, getClass().getSimpleName() + " handled!");
-				} else {
-					TaskLogger.d(TAG, getClass().getSimpleName() + " not handled...");
-				}
-			}
-		} catch (Exception ex) {
-			TaskLogger.exception(TAG, ex);
-			innerException = ex;
-		}
-		try {
-			queue.put(handled);
-		} catch (InterruptedException ex) {
-			TaskLogger.exception(TAG, ex);
-			throw new EngineRuntimeException("InterruptedException???", ex);
-		}
-	}
+    @Override
+    public void run() {
+        TaskLogger.d(TAG, "run");
+        boolean handled = false;
+        try {
+            TaskLogger.d(TAG, getClass().getSimpleName() + " task: " + task.getClass().getSimpleName());
+            GlobalErrorMethodDescriptor md = classDescriptor.getGlobalErrorMethod();
+            if (md != null) {
+                handled = (Boolean) md.invoke(target, globalError);
+                if (handled) {
+                    TaskLogger.d(TAG, getClass().getSimpleName() + " handled!");
+                } else {
+                    TaskLogger.d(TAG, getClass().getSimpleName() + " not handled...");
+                }
+            }
+        } catch (Exception ex) {
+            TaskLogger.exception(TAG, ex);
+            innerException = ex;
+        }
+        try {
+            queue.put(handled);
+        } catch (InterruptedException ex) {
+            TaskLogger.exception(TAG, ex);
+            throw new EngineRuntimeException("InterruptedException???", ex);
+        }
+    }
 }

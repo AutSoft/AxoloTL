@@ -17,11 +17,11 @@ package hu.axolotl.tasklib.exception;
 
 public final class GlobalTaskException extends BaseTaskException {
 
-	public GlobalTaskException(int errorCode) {
-		super(errorCode);
-	}
+    public GlobalTaskException(int errorCode) {
+        super(errorCode);
+    }
 
-	public GlobalTaskException(int errorCode, Object errorObject) {
-		super(errorCode, errorObject);
-	}
+    public GlobalTaskException(int errorCode, Object errorObject) {
+        super(errorCode, errorObject);
+    }
 }

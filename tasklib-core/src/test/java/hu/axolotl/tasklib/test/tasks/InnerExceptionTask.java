@@ -19,12 +19,12 @@ import hu.axolotl.tasklib.TaskAgent;
 
 public class InnerExceptionTask extends BaseTestTask {
 
-	@Override
-	public String run(TaskAgent agent) {
-		throw new CustomInnerException();
-	}
+    @Override
+    public String run(TaskAgent agent) {
+        throw new CustomInnerException();
+    }
 
-	public static class CustomInnerException extends RuntimeException {
-	}
+    public static class CustomInnerException extends RuntimeException {
+    }
 
 }

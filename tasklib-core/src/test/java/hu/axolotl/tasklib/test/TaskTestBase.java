@@ -27,50 +27,50 @@ import hu.axolotl.tasklib.util.TaskLogger;
 
 public abstract class TaskTestBase {
 
-	protected <T extends BaseTarget> T createHolder(T target) {
-		new TestTaskEngineHolder(target);
-		return target;
-	}
+    protected <T extends BaseTarget> T createHolder(T target) {
+        new TestTaskEngineHolder(target);
+        return target;
+    }
 
-	protected <T extends BaseTarget> T createHolderAndStart(T target) {
-		createHolder(target);
-		target.startHolder();
-		return target;
-	}
+    protected <T extends BaseTarget> T createHolderAndStart(T target) {
+        createHolder(target);
+        target.startHolder();
+        return target;
+    }
 
-	protected <T extends BaseTarget> T executeTask(T target, BaseTask... tasks) {
-		createHolderAndStart(target);
-		for (BaseTask task : tasks) {
-			target.executeTask(task);
-		}
-		waitForHoldersAndStop();
-		return target;
-	}
+    protected <T extends BaseTarget> T executeTask(T target, BaseTask... tasks) {
+        createHolderAndStart(target);
+        for (BaseTask task : tasks) {
+            target.executeTask(task);
+        }
+        waitForHoldersAndStop();
+        return target;
+    }
 
-	protected void waitForHolders() {
-		TestHolderUtil.getInstance().waitUntilFinished();
-	}
+    protected void waitForHolders() {
+        TestHolderUtil.getInstance().waitUntilFinished();
+    }
 
-	protected void waitForHoldersAndStop() {
-		waitForHolders();
-		TestHolderUtil.getInstance().stopHolders();
-	}
+    protected void waitForHoldersAndStop() {
+        waitForHolders();
+        TestHolderUtil.getInstance().stopHolders();
+    }
 
-	@Before
-	public void before() {
-		TaskLogger.setCustomInstance(new JavaTaskLogger());
-		TaskEngine.getInstance().setTaskEngineListener(new TaskEngine.TaskEngineListener() {
+    @Before
+    public void before() {
+        TaskLogger.setCustomInstance(new JavaTaskLogger());
+        TaskEngine.getInstance().setTaskEngineListener(new TaskEngine.TaskEngineListener() {
 
-			@Override
-			public void onTaskPendingFinished(BaseTask task) {
-				TestHolderUtil.getInstance().onTaskPendingFinished();
-			}
+            @Override
+            public void onTaskPendingFinished(BaseTask task) {
+                TestHolderUtil.getInstance().onTaskPendingFinished();
+            }
 
-			@Override
-			public void onTaskException(BaseTask task, Throwable exception) {
+            @Override
+            public void onTaskException(BaseTask task, Throwable exception) {
 
-			}
-		});
-	}
+            }
+        });
+    }
 
 }

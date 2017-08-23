@@ -25,37 +25,37 @@ import hu.axolotl.taskcompiler.CreateTaskProcessor;
 
 public class TestUtils {
 
-	public static Iterable<? extends Processor> getProcessors() {
-		return Arrays.asList(
-				new CreateTaskProcessor()
-		);
-	}
+    public static Iterable<? extends Processor> getProcessors() {
+        return Arrays.asList(
+                new CreateTaskProcessor()
+        );
+    }
 
-	public static String getJavaFileObjectSource(JavaFileObject javaFileObject) {
-		Reader reader = null;
-		try {
-			final int bufferSize = 1024;
-			final char[] buffer = new char[bufferSize];
-			final StringBuilder out = new StringBuilder();
-			reader = javaFileObject.openReader(false);
-			for (; ; ) {
-				int rsz = reader.read(buffer, 0, buffer.length);
-				if (rsz < 0)
-					break;
-				out.append(buffer, 0, rsz);
-			}
-			return out.toString();
-		} catch (Exception ex) {
-			throw new RuntimeException("JavaFileObject reader exception");
-		} finally {
-			try {
-				if (reader != null) {
-					reader.close();
-				}
-			} catch (Exception ex) {
-				throw new RuntimeException("JavaFileObject reader close exception");
-			}
-		}
-	}
+    public static String getJavaFileObjectSource(JavaFileObject javaFileObject) {
+        Reader reader = null;
+        try {
+            final int bufferSize = 1024;
+            final char[] buffer = new char[bufferSize];
+            final StringBuilder out = new StringBuilder();
+            reader = javaFileObject.openReader(false);
+            for (; ; ) {
+                int rsz = reader.read(buffer, 0, buffer.length);
+                if (rsz < 0)
+                    break;
+                out.append(buffer, 0, rsz);
+            }
+            return out.toString();
+        } catch (Exception ex) {
+            throw new RuntimeException("JavaFileObject reader exception");
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (Exception ex) {
+                throw new RuntimeException("JavaFileObject reader close exception");
+            }
+        }
+    }
 
 }

@@ -25,42 +25,42 @@ import static com.google.testing.compile.JavaSourcesSubjectFactory.javaSources;
 
 public class InjectorTest {
 
-	@Test
-	public void missingInjector() {
-		assertAbout(javaSources())
-				.that(TestJavaUtils.fromResources("good/ComplexWorker.java"))
-				.processedWith(TestUtils.getProcessors())
-				.failsToCompile()
-				.withErrorContaining("Missing static injector!");
-	}
+    @Test
+    public void missingInjector() {
+        assertAbout(javaSources())
+                .that(TestJavaUtils.fromResources("good/ComplexWorker.java"))
+                .processedWith(TestUtils.getProcessors())
+                .failsToCompile()
+                .withErrorContaining("Missing static injector!");
+    }
 
-	@Test
-	public void multipleInjector() {
-		assertAbout(javaSources())
-				.that(TestJavaUtils.fromResources(
-						"general/StaticInjector.java",
-						"general/TestApplication.java",
-						"general/OtherTestApplication.java",
-						"good/ComplexWorker.java"
+    @Test
+    public void multipleInjector() {
+        assertAbout(javaSources())
+                .that(TestJavaUtils.fromResources(
+                        "general/StaticInjector.java",
+                        "general/TestApplication.java",
+                        "general/OtherTestApplication.java",
+                        "good/ComplexWorker.java"
 
-				))
-				.processedWith(TestUtils.getProcessors())
-				.failsToCompile()
-				.withErrorContaining("Static injector already set!");
-	}
+                ))
+                .processedWith(TestUtils.getProcessors())
+                .failsToCompile()
+                .withErrorContaining("Static injector already set!");
+    }
 
-	@Test
-	public void privateInjector() {
-		assertAbout(javaSources())
-				.that(TestJavaUtils.fromResources(
-						"general/StaticInjector.java",
-						"general/WrongTestApplication.java",
-						"good/ComplexWorker.java"
+    @Test
+    public void privateInjector() {
+        assertAbout(javaSources())
+                .that(TestJavaUtils.fromResources(
+                        "general/StaticInjector.java",
+                        "general/WrongTestApplication.java",
+                        "good/ComplexWorker.java"
 
-				))
-				.processedWith(TestUtils.getProcessors())
-				.failsToCompile()
-				.withErrorContaining("Static injector is not public static!");
-	}
+                ))
+                .processedWith(TestUtils.getProcessors())
+                .failsToCompile()
+                .withErrorContaining("Static injector is not public static!");
+    }
 
 }

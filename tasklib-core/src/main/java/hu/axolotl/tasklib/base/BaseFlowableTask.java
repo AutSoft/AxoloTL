@@ -21,17 +21,17 @@ import io.reactivex.functions.Function;
 
 public abstract class BaseFlowableTask<T> extends BaseTask<T, Void> {
 
-	@Override
-	public final Flowable<RxTaskMessage<T, Void>> createFlowable() {
-		return getRunFlowable()
-				.map(new Function<T, RxTaskMessage<T, Void>>() {
-					@Override
-					public RxTaskMessage<T, Void> apply(T t) {
-						return RxTaskMessage.createResult(t);
-					}
-				});
-	}
+    @Override
+    public final Flowable<RxTaskMessage<T, Void>> createFlowable() {
+        return getRunFlowable()
+                .map(new Function<T, RxTaskMessage<T, Void>>() {
+                    @Override
+                    public RxTaskMessage<T, Void> apply(T t) {
+                        return RxTaskMessage.createResult(t);
+                    }
+                });
+    }
 
-	protected abstract Flowable<T> getRunFlowable();
+    protected abstract Flowable<T> getRunFlowable();
 
 }

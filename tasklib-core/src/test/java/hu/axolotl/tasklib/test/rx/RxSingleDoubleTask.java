@@ -20,10 +20,10 @@ import io.reactivex.Single;
 
 public class RxSingleDoubleTask extends BaseSingleTask<Double> {
 
-	public static final Double RESULT = -3.0;
+    public static final Double RESULT = -3.0;
 
-	@Override
-	protected Single<Double> getRunSingle() {
-		return Single.just(RESULT);
-	}
+    @Override
+    protected Single<Double> getRunSingle() {
+        return Single.just(RESULT);
+    }
 }

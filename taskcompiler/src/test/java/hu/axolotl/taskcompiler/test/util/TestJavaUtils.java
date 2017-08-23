@@ -27,31 +27,31 @@ import hu.axolotl.tasklib.util.TaskLogger;
 
 public class TestJavaUtils {
 
-	public static List<JavaFileObject> withGeneral(String... resources) {
-		List<String> fileObjects = new ArrayList<>();
-		fileObjects.add("general/TestApplication.java");
-		fileObjects.add("general/StaticInjector.java");
-		fileObjects.addAll(Arrays.asList(resources));
-		return fromResources(fileObjects.toArray(new String[0]));
-	}
+    public static List<JavaFileObject> withGeneral(String... resources) {
+        List<String> fileObjects = new ArrayList<>();
+        fileObjects.add("general/TestApplication.java");
+        fileObjects.add("general/StaticInjector.java");
+        fileObjects.addAll(Arrays.asList(resources));
+        return fromResources(fileObjects.toArray(new String[0]));
+    }
 
 	/*public static JavaFileObject[] expected(String... resources) {
-		List<String> fileObjects = new ArrayList<String>();
+        List<String> fileObjects = new ArrayList<String>();
 		for (String resource : resources) {
 			fileObjects.add("expected/" + resource);
 		}
 		return fromResources(fileObjects.toArray(new String[0])).toArray(new JavaFileObject[0]);
 	}*/
 
-	public static List<JavaFileObject> fromResources(String... resources) {
-		TaskLogger.d("TestUtils", "getJavaFiles");
-		List<JavaFileObject> fileObjects = new ArrayList<>();
-		for (String resource : resources) {
-			JavaFileObject javaFileObject = JavaFileObjects.forResource(resource);
-			TestLogger.log("TestUtils", javaFileObject);
-			fileObjects.add(javaFileObject);
-		}
-		return fileObjects;
-	}
+    public static List<JavaFileObject> fromResources(String... resources) {
+        TaskLogger.d("TestUtils", "getJavaFiles");
+        List<JavaFileObject> fileObjects = new ArrayList<>();
+        for (String resource : resources) {
+            JavaFileObject javaFileObject = JavaFileObjects.forResource(resource);
+            TestLogger.log("TestUtils", javaFileObject);
+            fileObjects.add(javaFileObject);
+        }
+        return fileObjects;
+    }
 
 }

@@ -19,8 +19,8 @@ import java.lang.reflect.Method;
 
 public class InvokeException extends Exception {
 
-	InvokeException(Class requestClass, Method method, Exception cause) {
-		super("InvokeException for method " + method.getName() + "(" + requestClass.getSimpleName() + ")", cause);
-	}
+    InvokeException(Class requestClass, Method method, Exception cause) {
+        super("InvokeException for method " + method.getName() + "(" + requestClass.getSimpleName() + ")", cause);
+    }
 
 }

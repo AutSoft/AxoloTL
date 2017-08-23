@@ -19,12 +19,12 @@ import javax.tools.JavaFileObject;
 
 public class TestLogger {
 
-	public static void d(String TAG, String msg) {
-		System.out.println("[" + TAG + "] " + msg);
-	}
+    public static void d(String TAG, String msg) {
+        System.out.println("[" + TAG + "] " + msg);
+    }
 
-	public static void log(String TAG, JavaFileObject javaFileObject) {
-		TestLogger.d(TAG, javaFileObject.getName());
-		System.out.println(TestUtils.getJavaFileObjectSource(javaFileObject));
-	}
+    public static void log(String TAG, JavaFileObject javaFileObject) {
+        TestLogger.d(TAG, javaFileObject.getName());
+        System.out.println(TestUtils.getJavaFileObjectSource(javaFileObject));
+    }
 }

@@ -23,14 +23,14 @@ import hu.axolotl.tasklib.test.tasks.ProgressTask;
 
 public class TaskProgressTest extends TaskTestBase {
 
-	@Test
-	public void progressTask() {
-		BaseTarget target = executeTask(new ProgressTarget(), new ProgressTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertProgressOrdered(ProgressTask.getProgresses())
-				.assertOther();
-	}
+    @Test
+    public void progressTask() {
+        BaseTarget target = executeTask(new ProgressTarget(), new ProgressTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertProgressOrdered(ProgressTask.getProgresses())
+                .assertOther();
+    }
 
 }

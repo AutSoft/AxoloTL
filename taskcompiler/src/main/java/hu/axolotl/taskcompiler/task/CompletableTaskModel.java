@@ -23,27 +23,27 @@ import hu.autsoft.compiler.TypeHelper;
 import hu.axolotl.tasklib.base.BaseCompletableTask;
 
 public class CompletableTaskModel extends BaseTaskModel {
-	CompletableTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
-		super(workerClass, workerTaskHelperClass, methodElement);
-	}
+    CompletableTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
+        super(workerClass, workerTaskHelperClass, methodElement);
+    }
 
-	@Override
-	protected TypeHelper getReturnType(TypeHelper fullReturnType) {
-		return TypeHelper.getVoid();
-	}
+    @Override
+    protected TypeHelper getReturnType(TypeHelper fullReturnType) {
+        return TypeHelper.getVoid();
+    }
 
-	@Override
-	protected TypeName getSuperClass() {
-		return TypeHelper.getTypeHelper(BaseCompletableTask.class).getTypeName();
-	}
+    @Override
+    protected TypeName getSuperClass() {
+        return TypeHelper.getTypeHelper(BaseCompletableTask.class).getTypeName();
+    }
 
-	@Override
-	protected String getRunFunctionName() {
-		return "getRunCompletable";
-	}
+    @Override
+    protected String getRunFunctionName() {
+        return "getRunCompletable";
+    }
 
-	@Override
-	protected boolean needAgentParamForRunFunction() {
-		return false;
-	}
+    @Override
+    protected boolean needAgentParamForRunFunction() {
+        return false;
+    }
 }

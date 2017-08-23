@@ -20,32 +20,32 @@ import hu.axolotl.tasklib.test.tasks.ProgressTask;
 
 public class ExceptionInHandlersTarget extends BaseTarget {
 
-	boolean exceptionInProgress;
-	boolean exceptionInResult;
+    boolean exceptionInProgress;
+    boolean exceptionInResult;
 
-	public ExceptionInHandlersTarget(boolean exceptionInProgress, boolean exceptionInResult) {
-		this.exceptionInProgress = exceptionInProgress;
-		this.exceptionInResult = exceptionInResult;
-	}
+    public ExceptionInHandlersTarget(boolean exceptionInProgress, boolean exceptionInResult) {
+        this.exceptionInProgress = exceptionInProgress;
+        this.exceptionInResult = exceptionInResult;
+    }
 
-	void onTaskResult(ProgressTask task) {
-		if (exceptionInResult) {
-			throw new ProgressTaskResultException();
-		}
-		otr(task);
-	}
+    void onTaskResult(ProgressTask task) {
+        if (exceptionInResult) {
+            throw new ProgressTaskResultException();
+        }
+        otr(task);
+    }
 
-	void onTaskProgress(ProgressTask task, Object progress) {
-		if (exceptionInProgress) {
-			throw new ProgressTaskProgressException();
-		}
-		otp(task, progress);
-	}
+    void onTaskProgress(ProgressTask task, Object progress) {
+        if (exceptionInProgress) {
+            throw new ProgressTaskProgressException();
+        }
+        otp(task, progress);
+    }
 
-	public static class ProgressTaskResultException extends RuntimeException {
-	}
+    public static class ProgressTaskResultException extends RuntimeException {
+    }
 
-	public static class ProgressTaskProgressException extends RuntimeException {
-	}
+    public static class ProgressTaskProgressException extends RuntimeException {
+    }
 
 }

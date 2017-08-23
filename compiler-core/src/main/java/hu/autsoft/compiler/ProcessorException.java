@@ -19,19 +19,19 @@ import javax.lang.model.element.Element;
 
 public class ProcessorException extends RuntimeException {
 
-	private final Element element;
+    private final Element element;
 
-	public ProcessorException(String msg) {
-		super(msg);
-		element = null;
-	}
+    public ProcessorException(String msg) {
+        super(msg);
+        element = null;
+    }
 
-	public ProcessorException(String msg, Element element) {
-		super(msg);
-		this.element = element;
-	}
+    public ProcessorException(String msg, Element element) {
+        super(msg);
+        this.element = element;
+    }
 
-	public final Element getElement() {
-		return element;
-	}
+    public final Element getElement() {
+        return element;
+    }
 }

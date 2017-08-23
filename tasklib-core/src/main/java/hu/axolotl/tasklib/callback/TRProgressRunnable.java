@@ -15,29 +15,29 @@
  */
 package hu.axolotl.tasklib.callback;
 
-import hu.axolotl.tasklib.descriptor.InvokeException;
 import hu.axolotl.tasklib.base.BaseTask;
 import hu.axolotl.tasklib.descriptor.ClassDescriptor;
+import hu.axolotl.tasklib.descriptor.InvokeException;
 import hu.axolotl.tasklib.descriptor.ProgressMethodDescriptor;
 
 public class TRProgressRunnable extends BaseTaskCallbackRunnable {
 
-	final Object progress;
+    final Object progress;
 
-	public TRProgressRunnable(ClassDescriptor classDescriptor, Object target, BaseTask task, Object progress) {
-		super(classDescriptor, target, task);
-		this.progress = progress;
-	}
+    public TRProgressRunnable(ClassDescriptor classDescriptor, Object target, BaseTask task, Object progress) {
+        super(classDescriptor, target, task);
+        this.progress = progress;
+    }
 
-	@Override
-	public void run() {
-		ProgressMethodDescriptor md = classDescriptor.getProgressMethod(task.getClass());
-		if (md != null) {
-			try {
-				md.invoke(target, task, progress);
-			} catch (InvokeException ex) {
-				innerException = ex;
-			}
-		}
-	}
+    @Override
+    public void run() {
+        ProgressMethodDescriptor md = classDescriptor.getProgressMethod(task.getClass());
+        if (md != null) {
+            try {
+                md.invoke(target, task, progress);
+            } catch (InvokeException ex) {
+                innerException = ex;
+            }
+        }
+    }
 }

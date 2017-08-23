@@ -24,48 +24,48 @@ import hu.axolotl.tasklib.base.BaseTaskEngineHolder;
 
 class StethoEventListener extends TaskEventListener {
 
-	private TaskLibStethoBridge bridge = new TaskLibStethoBridge();
+    private TaskLibStethoBridge bridge = new TaskLibStethoBridge();
 
-	@Override
-	protected void onHolderRegistered(BaseTaskEngineHolder holder) {
-		// Do nothing (needed for future version)
-	}
+    @Override
+    protected void onHolderRegistered(BaseTaskEngineHolder holder) {
+        // Do nothing (needed for future version)
+    }
 
-	@Override
-	protected void onHolderDeregistered(BaseTaskEngineHolder holder) {
-		// Do nothing (needed for future version)
-	}
+    @Override
+    protected void onHolderDeregistered(BaseTaskEngineHolder holder) {
+        // Do nothing (needed for future version)
+    }
 
-	@Override
-	protected void onExecuteCalled(BaseTask task, Object sourceAndTarget) {
-		CLog.writeToConsole(Console.MessageLevel.LOG, Console.MessageSource.OTHER, "onExecuteCalled");
-		bridge.reportTaskExecuteCalled(task, sourceAndTarget);
-	}
+    @Override
+    protected void onExecuteCalled(BaseTask task, Object sourceAndTarget) {
+        CLog.writeToConsole(Console.MessageLevel.LOG, Console.MessageSource.OTHER, "onExecuteCalled");
+        bridge.reportTaskExecuteCalled(task, sourceAndTarget);
+    }
 
-	@Override
-	protected void onSubscribed(BaseTask task) {
-		bridge.reportTaskStarted(task);
-	}
+    @Override
+    protected void onSubscribed(BaseTask task) {
+        bridge.reportTaskStarted(task);
+    }
 
-	@Override
-	protected void onFollowCalled(Class<? extends BaseTask> taskClass) {
-		// Do nothing (needed for future version)
-	}
+    @Override
+    protected void onFollowCalled(Class<? extends BaseTask> taskClass) {
+        // Do nothing (needed for future version)
+    }
 
-	@Override
-	protected void onProgress(BaseTask task, Object progress) {
-		// Do nothing (needed for future version)
-	}
+    @Override
+    protected void onProgress(BaseTask task, Object progress) {
+        // Do nothing (needed for future version)
+    }
 
-	@Override
-	protected void onResult(BaseTask task) {
-		CLog.writeToConsole(Console.MessageLevel.LOG, Console.MessageSource.OTHER, "onResult");
-		bridge.reportTaskFinished(task);
-	}
+    @Override
+    protected void onResult(BaseTask task) {
+        CLog.writeToConsole(Console.MessageLevel.LOG, Console.MessageSource.OTHER, "onResult");
+        bridge.reportTaskFinished(task);
+    }
 
-	@Override
-	protected void onExceptionInCallback(BaseTask task) {
-		// Do nothing (needed for future version)
-	}
+    @Override
+    protected void onExceptionInCallback(BaseTask task) {
+        // Do nothing (needed for future version)
+    }
 
 }

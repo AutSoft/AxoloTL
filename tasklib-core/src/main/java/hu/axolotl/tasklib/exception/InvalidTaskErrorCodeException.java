@@ -17,8 +17,8 @@ package hu.axolotl.tasklib.exception;
 
 public class InvalidTaskErrorCodeException extends RuntimeException {
 
-	InvalidTaskErrorCodeException() {
-		super("Invalid error code! Must be a positive integer");
-	}
+    InvalidTaskErrorCodeException() {
+        super("Invalid error code! Must be a positive integer");
+    }
 
 }

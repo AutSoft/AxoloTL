@@ -24,27 +24,27 @@ import static org.junit.Assert.assertEquals;
 
 public class UtilTest {
 
-	private static final String TAG = UtilTest.class.getSimpleName();
+    private static final String TAG = UtilTest.class.getSimpleName();
 
-	@Test
-	public void logger() {
-		TaskLogger.setCustomInstance(null);
-		TaskLogger.d(UtilTest.class.getSimpleName(), "default logger");
-		UtilTestLogger logger = new UtilTestLogger();
-		TaskLogger.setCustomInstance(logger);
-		TaskLogger.v(TAG, "v");
-		TaskLogger.v(TAG, "v");
-		TaskLogger.v(TAG, "v");
-		TaskLogger.d(TAG, "d");
-		TaskLogger.d(TAG, "d");
-		TaskLogger.e(TAG, "e");
-		assertEquals(3, logger.getV());
-		assertEquals(2, logger.getD());
-		assertEquals(1, logger.getE());
-	}
+    @Test
+    public void logger() {
+        TaskLogger.setCustomInstance(null);
+        TaskLogger.d(UtilTest.class.getSimpleName(), "default logger");
+        UtilTestLogger logger = new UtilTestLogger();
+        TaskLogger.setCustomInstance(logger);
+        TaskLogger.v(TAG, "v");
+        TaskLogger.v(TAG, "v");
+        TaskLogger.v(TAG, "v");
+        TaskLogger.d(TAG, "d");
+        TaskLogger.d(TAG, "d");
+        TaskLogger.e(TAG, "e");
+        assertEquals(3, logger.getV());
+        assertEquals(2, logger.getD());
+        assertEquals(1, logger.getE());
+    }
 
 	/*public void testTestExecutor() {
-		UtilTestExecutor testExecutor = new UtilTestExecutor();
+        UtilTestExecutor testExecutor = new UtilTestExecutor();
 		TaskGlobalUtil.setTestExecutor(testExecutor);
 
 		assertEquals(0, testExecutor.getExecutedCount());

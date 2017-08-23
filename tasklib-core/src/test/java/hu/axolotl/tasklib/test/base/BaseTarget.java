@@ -22,63 +22,63 @@ import hu.axolotl.tasklib.test.util.TestHolderUtil;
 
 public class BaseTarget extends BaseTargetTestResultHolder {
 
-	public static final String TAG = BaseTarget.class.getSimpleName();
+    public static final String TAG = BaseTarget.class.getSimpleName();
 
-	TestTaskEngineHolder holder;
+    TestTaskEngineHolder holder;
 
-	public BaseTarget() {
-		TestHolderUtil.getInstance().registerTarget(this);
-	}
+    public BaseTarget() {
+        TestHolderUtil.getInstance().registerTarget(this);
+    }
 
-	public void setHolder(TestTaskEngineHolder holder) {
-		this.holder = holder;
-	}
+    public void setHolder(TestTaskEngineHolder holder) {
+        this.holder = holder;
+    }
 
-	public void startHolder() {
-		holder.start();
-	}
+    public void startHolder() {
+        holder.start();
+    }
 
-	public void stopHolder() {
-		holder.stop();
-	}
+    public void stopHolder() {
+        holder.stop();
+    }
 
-	protected boolean onTaskGlobalError(GlobalError error) {
-		boolean handled = handleGlobalError(error);
-		if (handled) {
-			targetTestResult.handleGlobalError(error);
-		}
-		return handled;
-	}
+    protected boolean onTaskGlobalError(GlobalError error) {
+        boolean handled = handleGlobalError(error);
+        if (handled) {
+            targetTestResult.handleGlobalError(error);
+        }
+        return handled;
+    }
 
-	protected boolean handleGlobalError(GlobalError error) {
-		return true;
-	}
+    protected boolean handleGlobalError(GlobalError error) {
+        return true;
+    }
 
-	public void executeTask(BaseTask task) {
-		holder.executeTask(task);
-	}
+    public void executeTask(BaseTask task) {
+        holder.executeTask(task);
+    }
 
-	public void executeTask(BaseTask task, InlineTaskListener<String, String> inlineTaskListener) {
-		holder.executeTask(task, inlineTaskListener);
-	}
+    public void executeTask(BaseTask task, InlineTaskListener<String, String> inlineTaskListener) {
+        holder.executeTask(task, inlineTaskListener);
+    }
 
-	public <T, U> boolean subscribeTask(Class<? extends BaseTask<T, U>> taskClass) {
-		return holder.followTask(taskClass);
-	}
+    public <T, U> boolean subscribeTask(Class<? extends BaseTask<T, U>> taskClass) {
+        return holder.followTask(taskClass);
+    }
 
-	public void taskSubmitted() {
-		targetTestResult.submittedCount++;
-	}
+    public void taskSubmitted() {
+        targetTestResult.submittedCount++;
+    }
 
-	public void exceptionInResultCallback() {
-		targetTestResult.exceptionInResultCallback++;
-	}
+    public void exceptionInResultCallback() {
+        targetTestResult.exceptionInResultCallback++;
+    }
 
-	public void exceptionInProgressCallback() {
-		targetTestResult.exceptionInProgressCallback++;
-	}
+    public void exceptionInProgressCallback() {
+        targetTestResult.exceptionInProgressCallback++;
+    }
 
-	public void exceptionInGlobalErrorCallback() {
-		targetTestResult.exceptionInGlobalErrorCallback++;
-	}
+    public void exceptionInGlobalErrorCallback() {
+        targetTestResult.exceptionInGlobalErrorCallback++;
+    }
 }

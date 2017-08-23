@@ -20,12 +20,12 @@ import hu.axolotl.tasklib.test.tasks.ProgressTask;
 
 public class FollowTarget extends BaseTarget {
 
-	void onTaskResult(ProgressTask task) {
-		otr(task);
-	}
+    void onTaskResult(ProgressTask task) {
+        otr(task);
+    }
 
-	void onTaskProgress(ProgressTask task, Object progress) {
-		otp(task, progress);
-	}
+    void onTaskProgress(ProgressTask task, Object progress) {
+        otp(task, progress);
+    }
 
 }

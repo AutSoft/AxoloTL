@@ -20,8 +20,8 @@ import hu.axolotl.tasklib.test.tasks.InnerExceptionTask;
 
 public class InnerExceptionTarget extends BaseTarget {
 
-	void onTaskResult(InnerExceptionTask task) {
-		otr(task);
-	}
+    void onTaskResult(InnerExceptionTask task) {
+        otr(task);
+    }
 
 }

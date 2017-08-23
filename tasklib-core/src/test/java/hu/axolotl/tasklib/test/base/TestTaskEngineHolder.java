@@ -25,36 +25,36 @@ import hu.axolotl.tasklib.util.TaskLogger;
 
 public class TestTaskEngineHolder extends BaseTaskEngineHolder {
 
-	public static final String TAG = TestTaskEngineHolder.class.getSimpleName();
+    public static final String TAG = TestTaskEngineHolder.class.getSimpleName();
 
-	BaseTarget target;
+    BaseTarget target;
 
-	public TestTaskEngineHolder(BaseTarget target) {
-		super(target);
-		this.target = target;
-		target.setHolder(this);
-	}
+    public TestTaskEngineHolder(BaseTarget target) {
+        super(target);
+        this.target = target;
+        target.setHolder(this);
+    }
 
-	@Override
-	protected void beforeTaskExecuted(BaseTask task) {
-		TaskLogger.d(TAG, "beforeTaskExecuted");
-		target.taskSubmitted();
-	}
+    @Override
+    protected void beforeTaskExecuted(BaseTask task) {
+        TaskLogger.d(TAG, "beforeTaskExecuted");
+        target.taskSubmitted();
+    }
 
-	@Override
-	protected void postToProperThread(BaseTaskCallbackRunnable runnable) {
-		runnable.run();
-		if (runnable.hasInnerException()) {
-			if (runnable instanceof TRResultRunnable) {
-				target.exceptionInResultCallback();
-			} else if (runnable instanceof TRProgressRunnable) {
-				target.exceptionInProgressCallback();
-			} else if (runnable instanceof TRGlobalExceptionRunnable) {
-				target.exceptionInGlobalErrorCallback();
-			} else {
-				throw new RuntimeException("Invalid runnable?");
-			}
-		}
-	}
+    @Override
+    protected void postToProperThread(BaseTaskCallbackRunnable runnable) {
+        runnable.run();
+        if (runnable.hasInnerException()) {
+            if (runnable instanceof TRResultRunnable) {
+                target.exceptionInResultCallback();
+            } else if (runnable instanceof TRProgressRunnable) {
+                target.exceptionInProgressCallback();
+            } else if (runnable instanceof TRGlobalExceptionRunnable) {
+                target.exceptionInGlobalErrorCallback();
+            } else {
+                throw new RuntimeException("Invalid runnable?");
+            }
+        }
+    }
 
 }

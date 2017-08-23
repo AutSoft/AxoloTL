@@ -22,16 +22,16 @@ import static com.google.testing.compile.JavaSourcesSubjectFactory.javaSources;
 
 public abstract class TestBase {
 
-	protected void assertWithComplexWorker(String generatedTaskName) {
-		assertAbout(javaSources())
-				.that(TestJavaUtils.withGeneral("good/ComplexWorker.java"))
-				.processedWith(TestUtils.getProcessors())
-				.compilesWithoutError()
-				.and()
-				.generatesSources(
-						JavaFileObjects.forResource("expected/complex/ComplexWorkerTaskHelper.java"),
-						JavaFileObjects.forResource("expected/complex/" + generatedTaskName + ".java")
-				);
-	}
+    protected void assertWithComplexWorker(String generatedTaskName) {
+        assertAbout(javaSources())
+                .that(TestJavaUtils.withGeneral("good/ComplexWorker.java"))
+                .processedWith(TestUtils.getProcessors())
+                .compilesWithoutError()
+                .and()
+                .generatesSources(
+                        JavaFileObjects.forResource("expected/complex/ComplexWorkerTaskHelper.java"),
+                        JavaFileObjects.forResource("expected/complex/" + generatedTaskName + ".java")
+                );
+    }
 
 }

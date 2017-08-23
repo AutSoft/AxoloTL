@@ -28,41 +28,41 @@ import static com.google.testing.compile.JavaSourcesSubjectFactory.javaSources;
 
 public class TaskTest extends TestBase {
 
-	@Test
-	public void simpleWorker() {
-		assertAbout(javaSources())
-				.that(TestJavaUtils.withGeneral("good/SimpleWorker.java"))
-				.processedWith(TestUtils.getProcessors())
-				.compilesWithoutError()
-				.and()
-				.generatesSources(
-						JavaFileObjects.forResource("expected/SimpleWorkerTaskHelper.java"),
-						JavaFileObjects.forResource("expected/SimpleTask.java")
-				);
-	}
+    @Test
+    public void simpleWorker() {
+        assertAbout(javaSources())
+                .that(TestJavaUtils.withGeneral("good/SimpleWorker.java"))
+                .processedWith(TestUtils.getProcessors())
+                .compilesWithoutError()
+                .and()
+                .generatesSources(
+                        JavaFileObjects.forResource("expected/SimpleWorkerTaskHelper.java"),
+                        JavaFileObjects.forResource("expected/SimpleTask.java")
+                );
+    }
 
-	@Test
-	public void simpleTask() {
-		assertWithComplexWorker("SimpleTask");
-	}
+    @Test
+    public void simpleTask() {
+        assertWithComplexWorker("SimpleTask");
+    }
 
-	@Test
-	public void simpleWithIntReturnTask() {
-		assertWithComplexWorker("SimpleWithIntReturnTask");
-	}
+    @Test
+    public void simpleWithIntReturnTask() {
+        assertWithComplexWorker("SimpleWithIntReturnTask");
+    }
 
-	@Test
-	public void simpleWithObjectReturnTask() {
-		assertWithComplexWorker("SimpleWithObjectReturnTask");
-	}
+    @Test
+    public void simpleWithObjectReturnTask() {
+        assertWithComplexWorker("SimpleWithObjectReturnTask");
+    }
 
-	@Test
-	public void unnamedPackage() {
-		assertAbout(javaSources())
-				.that(TestJavaUtils.withGeneral("good/UnnamedPackageWorker.java"))
-				.processedWith(TestUtils.getProcessors())
-				.failsToCompile()
-				.withErrorContaining("Unnamed package not allowed for worker");
-	}
+    @Test
+    public void unnamedPackage() {
+        assertAbout(javaSources())
+                .that(TestJavaUtils.withGeneral("good/UnnamedPackageWorker.java"))
+                .processedWith(TestUtils.getProcessors())
+                .failsToCompile()
+                .withErrorContaining("Unnamed package not allowed for worker");
+    }
 
 }

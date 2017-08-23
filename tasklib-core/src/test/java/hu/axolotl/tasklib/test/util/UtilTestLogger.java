@@ -19,37 +19,37 @@ import hu.axolotl.tasklib.util.JavaTaskLogger;
 
 public class UtilTestLogger extends JavaTaskLogger {
 
-	int v = 0;
-	int d = 0;
-	int e = 0;
+    int v = 0;
+    int d = 0;
+    int e = 0;
 
-	@Override
-	protected void logV(String tag, String message) {
-		v++;
-		super.logV(tag, message);
-	}
+    @Override
+    protected void logV(String tag, String message) {
+        v++;
+        super.logV(tag, message);
+    }
 
-	@Override
-	protected void logD(String tag, String message) {
-		d++;
-		super.logD(tag, message);
-	}
+    @Override
+    protected void logD(String tag, String message) {
+        d++;
+        super.logD(tag, message);
+    }
 
-	@Override
-	protected void logE(String tag, String message) {
-		e++;
-		super.logE(tag, message);
-	}
+    @Override
+    protected void logE(String tag, String message) {
+        e++;
+        super.logE(tag, message);
+    }
 
-	public int getV() {
-		return v;
-	}
+    public int getV() {
+        return v;
+    }
 
-	public int getD() {
-		return d;
-	}
+    public int getD() {
+        return d;
+    }
 
-	public int getE() {
-		return e;
-	}
+    public int getE() {
+        return e;
+    }
 }

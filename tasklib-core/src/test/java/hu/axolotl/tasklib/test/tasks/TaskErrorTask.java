@@ -21,23 +21,23 @@ import hu.axolotl.tasklib.exception.TaskException;
 
 public class TaskErrorTask extends BaseTestTask {
 
-	public static final int TASK_ERROR_CODE = 49;
+    public static final int TASK_ERROR_CODE = 49;
 
-	private Object errorObject;
+    private Object errorObject;
 
-	public TaskErrorTask() {
-	}
+    public TaskErrorTask() {
+    }
 
-	public TaskErrorTask(Object errorObject) {
-		this.errorObject = errorObject;
-	}
+    public TaskErrorTask(Object errorObject) {
+        this.errorObject = errorObject;
+    }
 
-	@Override
-	public String run(TaskAgent agent) {
-		if (errorObject != null) {
-			throw new TaskException(TASK_ERROR_CODE, errorObject);
-		} else {
-			throw new TaskException(TASK_ERROR_CODE);
-		}
-	}
+    @Override
+    public String run(TaskAgent agent) {
+        if (errorObject != null) {
+            throw new TaskException(TASK_ERROR_CODE, errorObject);
+        } else {
+            throw new TaskException(TASK_ERROR_CODE);
+        }
+    }
 }

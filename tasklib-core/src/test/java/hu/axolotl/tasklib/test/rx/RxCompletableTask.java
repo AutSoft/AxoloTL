@@ -21,13 +21,13 @@ import io.reactivex.Completable;
 
 public class RxCompletableTask extends BaseCompletableTask {
 
-	@Override
-	protected Completable getRunCompletable() {
-		return Completable.fromRunnable(new Runnable() {
-			@Override
-			public void run() {
-				UtilTestLogger.d(RxCompletableTask.class.getSimpleName(), "run...");
-			}
-		});
-	}
+    @Override
+    protected Completable getRunCompletable() {
+        return Completable.fromRunnable(new Runnable() {
+            @Override
+            public void run() {
+                UtilTestLogger.d(RxCompletableTask.class.getSimpleName(), "run...");
+            }
+        });
+    }
 }

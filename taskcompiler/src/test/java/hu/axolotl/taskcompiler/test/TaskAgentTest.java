@@ -26,22 +26,22 @@ import static com.google.testing.compile.JavaSourcesSubjectFactory.javaSources;
 
 public class TaskAgentTest extends TestBase {
 
-	@Test
-	public void taskAgentTask() {
-		assertWithComplexWorker("TaskAgentTask");
-	}
+    @Test
+    public void taskAgentTask() {
+        assertWithComplexWorker("TaskAgentTask");
+    }
 
-	@Test
-	public void taskAgentTaskWithParam() {
-		assertWithComplexWorker("TaskAgentWithParamTask");
-	}
+    @Test
+    public void taskAgentTaskWithParam() {
+        assertWithComplexWorker("TaskAgentWithParamTask");
+    }
 
-	@Test
-	public void invalidTaskAgentPosition() {
-		assertAbout(javaSources())
-				.that(TestJavaUtils.withGeneral("good/InvalidTaskAgentWorker.java"))
-				.processedWith(TestUtils.getProcessors())
-				.failsToCompile()
-				.withErrorContaining("Invalid TaskAgent position");
-	}
+    @Test
+    public void invalidTaskAgentPosition() {
+        assertAbout(javaSources())
+                .that(TestJavaUtils.withGeneral("good/InvalidTaskAgentWorker.java"))
+                .processedWith(TestUtils.getProcessors())
+                .failsToCompile()
+                .withErrorContaining("Invalid TaskAgent position");
+    }
 }

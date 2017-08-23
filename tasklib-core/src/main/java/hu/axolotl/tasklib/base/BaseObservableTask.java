@@ -23,17 +23,17 @@ import io.reactivex.functions.Function;
 
 public abstract class BaseObservableTask<T> extends BaseTask<T, Void> {
 
-	@Override
-	public final Flowable<RxTaskMessage<T, Void>> createFlowable() {
-		return getRunObservable()
-				.toFlowable(BackpressureStrategy.ERROR).map(new Function<T, RxTaskMessage<T, Void>>() {
-					@Override
-					public RxTaskMessage<T, Void> apply(T t) {
-						return RxTaskMessage.createResult(t);
-					}
-				});
-	}
+    @Override
+    public final Flowable<RxTaskMessage<T, Void>> createFlowable() {
+        return getRunObservable()
+                .toFlowable(BackpressureStrategy.ERROR).map(new Function<T, RxTaskMessage<T, Void>>() {
+                    @Override
+                    public RxTaskMessage<T, Void> apply(T t) {
+                        return RxTaskMessage.createResult(t);
+                    }
+                });
+    }
 
-	protected abstract Observable<T> getRunObservable();
+    protected abstract Observable<T> getRunObservable();
 
 }

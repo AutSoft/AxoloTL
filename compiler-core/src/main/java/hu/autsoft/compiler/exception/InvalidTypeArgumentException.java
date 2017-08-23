@@ -17,7 +17,7 @@ package hu.autsoft.compiler.exception;
 
 public class InvalidTypeArgumentException extends RuntimeException {
 
-	public InvalidTypeArgumentException(String name) {
-		super("Invalid type arguments for: " + name);
-	}
+    public InvalidTypeArgumentException(String name) {
+        super("Invalid type arguments for: " + name);
+    }
 }

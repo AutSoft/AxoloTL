@@ -6,17 +6,17 @@ import hu.axolotl.test.ComplexWorker;
 import hu.axolotl.test.task.ComplexWorkerTaskHelper;
 
 public class TaskAgentTask extends BaseRunTask<Void, Object> {
-	protected ComplexWorker worker;
+    protected ComplexWorker worker;
 
-	public TaskAgentTask() {
-		ComplexWorkerTaskHelper helper = new ComplexWorkerTaskHelper();
-		worker = helper.getWorker();
-		setSchedulerId(0);
-	}
+    public TaskAgentTask() {
+        ComplexWorkerTaskHelper helper = new ComplexWorkerTaskHelper();
+        worker = helper.getWorker();
+        setSchedulerId(0);
+    }
 
-	@Override
-	public Void run(TaskAgent<Object> agent) {
-		worker.taskAgent(agent);
-		return null;
-	}
+    @Override
+    public Void run(TaskAgent<Object> agent) {
+        worker.taskAgent(agent);
+        return null;
+    }
 }

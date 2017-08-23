@@ -33,42 +33,42 @@ import hu.axolotl.taskcompiler.task.TaskModelFactory;
 
 class FullModel {
 
-	private String staticInjectorVariable;
-	private Map<String, WorkerTaskModel> workerModels = new HashMap<>();
+    private String staticInjectorVariable;
+    private Map<String, WorkerTaskModel> workerModels = new HashMap<>();
 
-	void processMethod(ExecutableElement methodElement) {
-		Element workerClass = methodElement.getEnclosingElement();
-		if (CompilerUtil.isPackageUnnamed(workerClass)) {
-			throw new ProcessorException("Unnamed package not allowed for worker: " + workerClass.getSimpleName());
-		}
-		String workerKey = Util.getWorkerClass(workerClass).getStrFullClassName();
-		if (!workerModels.containsKey(workerKey)) {
-			WorkerTaskModel workerTaskModel = new WorkerTaskModel(workerClass);
-			workerModels.put(workerKey, workerTaskModel);
-		}
-		WorkerTaskModel workerTaskModel = workerModels.get(workerKey);
-		BaseTaskModel taskModel = TaskModelFactory.getTaskModel(workerTaskModel.getWorkerClass(), workerTaskModel.getWorkerTaskHelperClass(), methodElement);
-		workerTaskModel.addTaskModel(taskModel);
-	}
+    void processMethod(ExecutableElement methodElement) {
+        Element workerClass = methodElement.getEnclosingElement();
+        if (CompilerUtil.isPackageUnnamed(workerClass)) {
+            throw new ProcessorException("Unnamed package not allowed for worker: " + workerClass.getSimpleName());
+        }
+        String workerKey = Util.getWorkerClass(workerClass).getStrFullClassName();
+        if (!workerModels.containsKey(workerKey)) {
+            WorkerTaskModel workerTaskModel = new WorkerTaskModel(workerClass);
+            workerModels.put(workerKey, workerTaskModel);
+        }
+        WorkerTaskModel workerTaskModel = workerModels.get(workerKey);
+        BaseTaskModel taskModel = TaskModelFactory.getTaskModel(workerTaskModel.getWorkerClass(), workerTaskModel.getWorkerTaskHelperClass(), methodElement);
+        workerTaskModel.addTaskModel(taskModel);
+    }
 
-	private void writeFile(ProcessingEnvironment processingEnv, String filename, String content) throws IOException {
-		JavaFileObject jfo = processingEnv.getFiler().createSourceFile(filename);
-		processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, "creating source file: " + jfo.toUri());
-		Writer writer = jfo.openWriter();
-		writer.write(content);
-		writer.close();
-	}
+    private void writeFile(ProcessingEnvironment processingEnv, String filename, String content) throws IOException {
+        JavaFileObject jfo = processingEnv.getFiler().createSourceFile(filename);
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, "creating source file: " + jfo.toUri());
+        Writer writer = jfo.openWriter();
+        writer.write(content);
+        writer.close();
+    }
 
-	public void writeFiles(ProcessingEnvironment processingEnv) throws IOException {
-		for (WorkerTaskModel workerTaskModel : workerModels.values()) {
-			writeFile(processingEnv, workerTaskModel.getHelperFilename(), workerTaskModel.getHelperJava(staticInjectorVariable));
-			for (BaseTaskModel taskModel : workerTaskModel.getTaskModels()) {
-				writeFile(processingEnv, taskModel.getFilename(), taskModel.getJava());
-			}
-		}
-	}
+    public void writeFiles(ProcessingEnvironment processingEnv) throws IOException {
+        for (WorkerTaskModel workerTaskModel : workerModels.values()) {
+            writeFile(processingEnv, workerTaskModel.getHelperFilename(), workerTaskModel.getHelperJava(staticInjectorVariable));
+            for (BaseTaskModel taskModel : workerTaskModel.getTaskModels()) {
+                writeFile(processingEnv, taskModel.getFilename(), taskModel.getJava());
+            }
+        }
+    }
 
-	public void setStaticInjector(Element staticInjector) {
-		staticInjectorVariable = staticInjector.getEnclosingElement() + "." + staticInjector;
-	}
+    public void setStaticInjector(Element staticInjector) {
+        staticInjectorVariable = staticInjector.getEnclosingElement() + "." + staticInjector;
+    }
 }

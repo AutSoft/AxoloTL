@@ -15,16 +15,16 @@
  */
 package hu.axolotl.tasklib.sample.app;
 
-import hu.axolotl.tasklib.base.BaseTask;
 import hu.axolotl.tasklib.GlobalError;
 import hu.axolotl.tasklib.android.base.TaskActivity;
+import hu.axolotl.tasklib.base.BaseTask;
 
 public abstract class BaseActivity extends TaskActivity {
 
-	protected boolean onTaskGlobalError(GlobalError error) {
-		setTaskStatus(null, "GE onTaskGlobalError");
-		return true;
-	}
+    protected boolean onTaskGlobalError(GlobalError error) {
+        setTaskStatus(null, "GE onTaskGlobalError");
+        return true;
+    }
 
-	protected abstract void setTaskStatus(BaseTask task, String message);
+    protected abstract void setTaskStatus(BaseTask task, String message);
 }

@@ -28,41 +28,41 @@ import static com.google.testing.compile.JavaSourcesSubjectFactory.javaSources;
 
 public class RxTest extends TestBase {
 
-	private void assertRxWorker(String generatedTaskName) {
-		assertAbout(javaSources())
-				.that(TestJavaUtils.withGeneral("good/RxWorker.java"))
-				.processedWith(TestUtils.getProcessors())
-				.compilesWithoutError()
-				.and()
-				.generatesSources(
-						JavaFileObjects.forResource("expected/rx/RxWorkerTaskHelper.java"),
-						JavaFileObjects.forResource("expected/rx/" + generatedTaskName + ".java")
-				);
-	}
+    private void assertRxWorker(String generatedTaskName) {
+        assertAbout(javaSources())
+                .that(TestJavaUtils.withGeneral("good/RxWorker.java"))
+                .processedWith(TestUtils.getProcessors())
+                .compilesWithoutError()
+                .and()
+                .generatesSources(
+                        JavaFileObjects.forResource("expected/rx/RxWorkerTaskHelper.java"),
+                        JavaFileObjects.forResource("expected/rx/" + generatedTaskName + ".java")
+                );
+    }
 
-	@Test
-	public void integerObservable() {
-		assertRxWorker("IntegerObservableTask");
-	}
+    @Test
+    public void integerObservable() {
+        assertRxWorker("IntegerObservableTask");
+    }
 
-	@Test
-	public void integerFlowable() {
-		assertRxWorker("IntegerFlowableTask");
-	}
+    @Test
+    public void integerFlowable() {
+        assertRxWorker("IntegerFlowableTask");
+    }
 
-	@Test
-	public void integerListFlowable() {
-		assertRxWorker("StringListFlowableTask");
-	}
+    @Test
+    public void integerListFlowable() {
+        assertRxWorker("StringListFlowableTask");
+    }
 
-	@Test
-	public void doubleSingle() {
-		assertRxWorker("DoubleSingleTask");
-	}
+    @Test
+    public void doubleSingle() {
+        assertRxWorker("DoubleSingleTask");
+    }
 
-	@Test
-	public void completable() {
-		assertRxWorker("CompletableTask");
-	}
+    @Test
+    public void completable() {
+        assertRxWorker("CompletableTask");
+    }
 
 }

@@ -23,33 +23,33 @@ import hu.axolotl.tasklib.base.BaseTask;
 
 public class TaskActivity extends AppCompatActivity {
 
-	TaskEngineHolder holder;
+    TaskEngineHolder holder;
 
-	public TaskActivity() {
-		holder = new TaskEngineHolder(this);
-	}
+    public TaskActivity() {
+        holder = new TaskEngineHolder(this);
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		holder.start();
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
+        holder.start();
+    }
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		holder.stop();
-	}
+    @Override
+    protected void onPause() {
+        super.onPause();
+        holder.stop();
+    }
 
-	protected <T, U> long executeTask(BaseTask<T, U> task) {
-		return holder.executeTask(task);
-	}
+    protected <T, U> long executeTask(BaseTask<T, U> task) {
+        return holder.executeTask(task);
+    }
 
-	protected <T, U> long executeTask(BaseTask<T, U> task, InlineTaskListener<T, U> listener) {
-		return holder.executeTask(task, listener);
-	}
+    protected <T, U> long executeTask(BaseTask<T, U> task, InlineTaskListener<T, U> listener) {
+        return holder.executeTask(task, listener);
+    }
 
-	protected <T, U> boolean followTask(Class<? extends BaseTask<T, U>> taskClass) {
-		return holder.followTask(taskClass);
-	}
+    protected <T, U> boolean followTask(Class<? extends BaseTask<T, U>> taskClass) {
+        return holder.followTask(taskClass);
+    }
 }

@@ -21,19 +21,19 @@ import hu.axolotl.tasklib.test.tasks.GlobalErrorTask;
 
 public class GlobalErrorExceptionTarget extends BaseTarget {
 
-	void onTaskResult(GlobalErrorTask task) {
-		otr(task);
-	}
+    void onTaskResult(GlobalErrorTask task) {
+        otr(task);
+    }
 
-	void onTaskProgress(GlobalErrorTask task, Object progress) {
-		otp(task, progress);
-	}
+    void onTaskProgress(GlobalErrorTask task, Object progress) {
+        otp(task, progress);
+    }
 
-	@Override
-	protected boolean handleGlobalError(GlobalError error) {
-		throw new ExceptionInGlobalError();
-	}
+    @Override
+    protected boolean handleGlobalError(GlobalError error) {
+        throw new ExceptionInGlobalError();
+    }
 
-	public static class ExceptionInGlobalError extends RuntimeException {
-	}
+    public static class ExceptionInGlobalError extends RuntimeException {
+    }
 }

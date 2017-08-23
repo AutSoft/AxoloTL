@@ -17,27 +17,27 @@ package hu.axolotl.tasklib.exception;
 
 public abstract class BaseTaskException extends RuntimeException {
 
-	private final int errorCode;
-	private final Object errorObject;
+    private final int errorCode;
+    private final Object errorObject;
 
-	BaseTaskException(int errorCode) {
-		this(errorCode, null);
-	}
+    BaseTaskException(int errorCode) {
+        this(errorCode, null);
+    }
 
-	BaseTaskException(int errorCode, Object errorObject) {
-		if (errorCode <= 0) {
-			throw new InvalidTaskErrorCodeException();
-		}
-		this.errorCode = errorCode;
-		this.errorObject = errorObject;
-	}
+    BaseTaskException(int errorCode, Object errorObject) {
+        if (errorCode <= 0) {
+            throw new InvalidTaskErrorCodeException();
+        }
+        this.errorCode = errorCode;
+        this.errorObject = errorObject;
+    }
 
-	public int getErrorCode() {
-		return errorCode;
-	}
+    public int getErrorCode() {
+        return errorCode;
+    }
 
-	public Object getErrorObject() {
-		return errorObject;
-	}
+    public Object getErrorObject() {
+        return errorObject;
+    }
 
 }

@@ -24,65 +24,65 @@ import hu.axolotl.tasklib.test.tasks.SimpleTask;
 
 public class BasicTest extends TaskTestBase {
 
-	@Test
-	public void simpleTask() {
-		BaseTarget target = executeTask(new SimpleTarget(), new SimpleTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1, SimpleTask.class.getSimpleName())
-				.assertOther();
-	}
+    @Test
+    public void simpleTask() {
+        BaseTarget target = executeTask(new SimpleTarget(), new SimpleTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1, SimpleTask.class.getSimpleName())
+                .assertOther();
+    }
 
-	@Test
-	public void inlineTaskListener() {
-		BaseTarget target = createHolderAndStart(new SimpleTarget());
-		BaseInlineTaskListener inlineTaskListener = new BaseInlineTaskListener();
-		target.executeTask(new SimpleTask(), inlineTaskListener);
-		waitForHoldersAndStop();
+    @Test
+    public void inlineTaskListener() {
+        BaseTarget target = createHolderAndStart(new SimpleTarget());
+        BaseInlineTaskListener inlineTaskListener = new BaseInlineTaskListener();
+        target.executeTask(new SimpleTask(), inlineTaskListener);
+        waitForHoldersAndStop();
 
-		inlineTaskListener.createTargetTestResult()
-				.assertResultCount(1)
-				.assertOther();
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertOther();
-	}
+        inlineTaskListener.createTargetTestResult()
+                .assertResultCount(1)
+                .assertOther();
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertOther();
+    }
 
-	@Test
-	public void executedFromQueueAfterStart() {
-		BaseTarget target = createHolder(new SimpleTarget());
-		target.executeTask(new SimpleTask());
+    @Test
+    public void executedFromQueueAfterStart() {
+        BaseTarget target = createHolder(new SimpleTarget());
+        target.executeTask(new SimpleTask());
 
-		target.createTargetTestResult()
-				.assertOther();
+        target.createTargetTestResult()
+                .assertOther();
 
-		waitForHolders();
+        waitForHolders();
 
-		target.startHolder();
+        target.startHolder();
 
-		waitForHoldersAndStop();
+        waitForHoldersAndStop();
 
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertOther();
-	}
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertOther();
+    }
 
-	@Test
-	public void notHandledAfterStop() {
-		BaseTarget target = createHolder(new SimpleTarget());
+    @Test
+    public void notHandledAfterStop() {
+        BaseTarget target = createHolder(new SimpleTarget());
 
-		target.createTargetTestResult()
-				.assertOther();
+        target.createTargetTestResult()
+                .assertOther();
 
-		waitForHoldersAndStop();
+        waitForHoldersAndStop();
 
-		target.executeTask(new SimpleTask());
+        target.executeTask(new SimpleTask());
 
-		target.createTargetTestResult()
-				.assertSubmittedCount(0)
-				.assertResultCount(0)
-				.assertOther();
-	}
+        target.createTargetTestResult()
+                .assertSubmittedCount(0)
+                .assertResultCount(0)
+                .assertOther();
+    }
 
 }

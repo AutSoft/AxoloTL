@@ -25,53 +25,53 @@ import static hu.axolotl.tasklib.test.TestObject.TEST_ERROR_CODE_OTHER;
 
 public class TaskExceptionErrorTest extends TestBase {
 
-	@Test
-	public void notTaskException() {
-		assertMatcherError(TaskExceptionMatcher.codeWithoutObjectCheck(TEST_ERROR_CODE),
-				new RuntimeException("test..."),
-				DescriptionBuilder.exceptionClassErrorStr(TaskException.class, RuntimeException.class));
-	}
+    @Test
+    public void notTaskException() {
+        assertMatcherError(TaskExceptionMatcher.codeWithoutObjectCheck(TEST_ERROR_CODE),
+                new RuntimeException("test..."),
+                DescriptionBuilder.exceptionClassErrorStr(TaskException.class, RuntimeException.class));
+    }
 
-	@Test
-	public void notTaskExceptionButGlobal() {
-		assertMatcherError(TaskExceptionMatcher.codeWithoutObjectCheck(TEST_ERROR_CODE),
-				new GlobalTaskException(TEST_ERROR_CODE_OTHER),
-				DescriptionBuilder.exceptionClassErrorStr(TaskException.class, GlobalTaskException.class));
-	}
+    @Test
+    public void notTaskExceptionButGlobal() {
+        assertMatcherError(TaskExceptionMatcher.codeWithoutObjectCheck(TEST_ERROR_CODE),
+                new GlobalTaskException(TEST_ERROR_CODE_OTHER),
+                DescriptionBuilder.exceptionClassErrorStr(TaskException.class, GlobalTaskException.class));
+    }
 
-	@Test
-	public void code() {
-		assertMatcherError(TaskExceptionMatcher.codeWithoutObjectCheck(TEST_ERROR_CODE),
-				new TaskException(TEST_ERROR_CODE_OTHER),
-				DescriptionBuilder.errorCodeMismatchStr(TEST_ERROR_CODE, TEST_ERROR_CODE_OTHER));
-	}
+    @Test
+    public void code() {
+        assertMatcherError(TaskExceptionMatcher.codeWithoutObjectCheck(TEST_ERROR_CODE),
+                new TaskException(TEST_ERROR_CODE_OTHER),
+                DescriptionBuilder.errorCodeMismatchStr(TEST_ERROR_CODE, TEST_ERROR_CODE_OTHER));
+    }
 
-	@Test
-	public void objectNullActual() {
-		TestObject expected = TestObject.create();
-		TestObject actual = null;
-		assertMatcherError(TaskExceptionMatcher.codeWithObject(TEST_ERROR_CODE, expected),
-				new TaskException(TEST_ERROR_CODE, actual),
-				DescriptionBuilder.errorObjectMismatchStr(expected, actual));
-	}
+    @Test
+    public void objectNullActual() {
+        TestObject expected = TestObject.create();
+        TestObject actual = null;
+        assertMatcherError(TaskExceptionMatcher.codeWithObject(TEST_ERROR_CODE, expected),
+                new TaskException(TEST_ERROR_CODE, actual),
+                DescriptionBuilder.errorObjectMismatchStr(expected, actual));
+    }
 
-	@Test
-	public void objectNullExpected() {
-		TestObject expected = null;
-		TestObject actual = TestObject.createModified();
-		assertMatcherError(TaskExceptionMatcher.codeWithObject(TEST_ERROR_CODE, expected),
-				new TaskException(TEST_ERROR_CODE, actual),
-				DescriptionBuilder.errorObjectMismatchStr(expected, actual));
-	}
+    @Test
+    public void objectNullExpected() {
+        TestObject expected = null;
+        TestObject actual = TestObject.createModified();
+        assertMatcherError(TaskExceptionMatcher.codeWithObject(TEST_ERROR_CODE, expected),
+                new TaskException(TEST_ERROR_CODE, actual),
+                DescriptionBuilder.errorObjectMismatchStr(expected, actual));
+    }
 
-	@Test
-	public void object() {
-		TestObject expected = TestObject.create();
-		TestObject actual = TestObject.createModified();
-		assertMatcherError(TaskExceptionMatcher.codeWithObject(TEST_ERROR_CODE, expected),
-				new TaskException(TEST_ERROR_CODE, actual),
-				DescriptionBuilder.errorObjectMismatchStr(expected, actual));
-	}
+    @Test
+    public void object() {
+        TestObject expected = TestObject.create();
+        TestObject actual = TestObject.createModified();
+        assertMatcherError(TaskExceptionMatcher.codeWithObject(TEST_ERROR_CODE, expected),
+                new TaskException(TEST_ERROR_CODE, actual),
+                DescriptionBuilder.errorObjectMismatchStr(expected, actual));
+    }
 
 
 }

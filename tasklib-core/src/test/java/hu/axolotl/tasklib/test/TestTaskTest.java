@@ -25,57 +25,57 @@ import static org.junit.Assert.assertTrue;
 
 public class TestTaskTest extends TaskTestBase {
 
-	private static final String RESULT = "ThisIsTheResult";
-	private static final int ERROR_CODE = 67;
-	private static final Object ERROR_OBJECT = new Object();
+    private static final String RESULT = "ThisIsTheResult";
+    private static final int ERROR_CODE = 67;
+    private static final Object ERROR_OBJECT = new Object();
 
-	@Test
-	public void taskTestSuccess() {
-		assertTaskSuccess(new SimpleTask());
-	}
+    @Test
+    public void taskTestSuccess() {
+        assertTaskSuccess(new SimpleTask());
+    }
 
-	@Test
-	public void taskTestError() {
-		assertTaskError(new SimpleTask());
-	}
+    @Test
+    public void taskTestError() {
+        assertTaskError(new SimpleTask());
+    }
 
-	@Test
-	public void taskTestErrorObject() {
-		assertTaskErrorWithObject(new SimpleTask());
-	}
+    @Test
+    public void taskTestErrorObject() {
+        assertTaskErrorWithObject(new SimpleTask());
+    }
 
-	@Test
-	public void taskTestMultipleResults() {
-		SimpleTask task = new SimpleTask();
+    @Test
+    public void taskTestMultipleResults() {
+        SimpleTask task = new SimpleTask();
 
-		assertTaskSuccess(task);
-		assertTaskError(task);
-		assertTaskErrorWithObject(task);
-		assertTaskSuccess(task);
-		assertTaskError(task);
-		assertTaskErrorWithObject(task);
-	}
+        assertTaskSuccess(task);
+        assertTaskError(task);
+        assertTaskErrorWithObject(task);
+        assertTaskSuccess(task);
+        assertTaskError(task);
+        assertTaskErrorWithObject(task);
+    }
 
-	private void assertTaskSuccess(SimpleTask task) {
-		task.testWithSuccess(RESULT);
+    private void assertTaskSuccess(SimpleTask task) {
+        task.testWithSuccess(RESULT);
 
-		assertFalse(task.hasError());
-		assertEquals(RESULT, task.getResult());
-	}
+        assertFalse(task.hasError());
+        assertEquals(RESULT, task.getResult());
+    }
 
-	private void assertTaskError(SimpleTask task) {
-		task.testWithError(ERROR_CODE);
+    private void assertTaskError(SimpleTask task) {
+        task.testWithError(ERROR_CODE);
 
-		assertTrue(task.hasError());
-		assertEquals(ERROR_CODE, task.getErrorCode());
-	}
+        assertTrue(task.hasError());
+        assertEquals(ERROR_CODE, task.getErrorCode());
+    }
 
-	private void assertTaskErrorWithObject(SimpleTask task) {
-		task.testWithError(ERROR_CODE, ERROR_OBJECT);
+    private void assertTaskErrorWithObject(SimpleTask task) {
+        task.testWithError(ERROR_CODE, ERROR_OBJECT);
 
-		assertTrue(task.hasError());
-		assertEquals(ERROR_CODE, task.getErrorCode());
-		assertEquals(ERROR_OBJECT, task.getErrorObject());
-	}
+        assertTrue(task.hasError());
+        assertEquals(ERROR_CODE, task.getErrorCode());
+        assertEquals(ERROR_OBJECT, task.getErrorObject());
+    }
 
 }

@@ -19,13 +19,13 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class TaskGlobalUtil {
 
-	private static AtomicLong nextId = new AtomicLong(1);
+    private static AtomicLong nextId = new AtomicLong(1);
 
-	public static long getNextSourceId() {
-		return nextId.getAndIncrement();
-	}
+    public static long getNextSourceId() {
+        return nextId.getAndIncrement();
+    }
 
-	public static long getNextTaskId() {
-		return nextId.getAndIncrement();
-	}
+    public static long getNextTaskId() {
+        return nextId.getAndIncrement();
+    }
 }

@@ -32,80 +32,80 @@ import io.reactivex.subscribers.TestSubscriber;
 
 public class RxTest extends TaskTestBase {
 
-	public static final String TAG = RxTest.class.getSimpleName();
+    public static final String TAG = RxTest.class.getSimpleName();
 
-	@Test
-	public void flowable() {
-		RxTestTask.create()
-				.subscribeOn(Schedulers.io())
-				.subscribe(new TestSubscriber<>(new BaseTaskSubscriber<String, String>() {
-					@Override
-					protected void onTaskProgress(String progress) {
-						UtilTestLogger.d(TAG, "onTaskProgress");
-					}
+    @Test
+    public void flowable() {
+        RxTestTask.create()
+                .subscribeOn(Schedulers.io())
+                .subscribe(new TestSubscriber<>(new BaseTaskSubscriber<String, String>() {
+                    @Override
+                    protected void onTaskProgress(String progress) {
+                        UtilTestLogger.d(TAG, "onTaskProgress");
+                    }
 
-					@Override
-					protected void onTaskResult(String resultObject) {
-						UtilTestLogger.d(TAG, "onTaskResult");
-					}
+                    @Override
+                    protected void onTaskResult(String resultObject) {
+                        UtilTestLogger.d(TAG, "onTaskResult");
+                    }
 
-					@Override
-					protected void onTaskError(boolean global, int errorCode, Object errorObject, Throwable throwable) {
-						UtilTestLogger.d(TAG, "onTaskError");
-					}
-				}));
-		UtilTestLogger.d(TAG, "afterSubscribe");
-		try {
-			Thread.sleep(500);
-		} catch (Exception ex) {
-		}
-	}
+                    @Override
+                    protected void onTaskError(boolean global, int errorCode, Object errorObject, Throwable throwable) {
+                        UtilTestLogger.d(TAG, "onTaskError");
+                    }
+                }));
+        UtilTestLogger.d(TAG, "afterSubscribe");
+        try {
+            Thread.sleep(500);
+        } catch (Exception ex) {
+        }
+    }
 
-	@Test
-	public void observableIntegerTask() {
-		BaseTarget target = executeTask(new RxTarget(), new RxObservableIntegerTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1, RxObservableIntegerTask.RESULT)
-				.assertOther();
-	}
+    @Test
+    public void observableIntegerTask() {
+        BaseTarget target = executeTask(new RxTarget(), new RxObservableIntegerTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1, RxObservableIntegerTask.RESULT)
+                .assertOther();
+    }
 
-	@Test
-	public void singleDoubleTask() {
-		BaseTarget target = executeTask(new RxTarget(), new RxSingleDoubleTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1, RxSingleDoubleTask.RESULT)
-				.assertOther();
-	}
+    @Test
+    public void singleDoubleTask() {
+        BaseTarget target = executeTask(new RxTarget(), new RxSingleDoubleTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1, RxSingleDoubleTask.RESULT)
+                .assertOther();
+    }
 
-	@Test
-	public void flowableStringTask() {
-		BaseTarget target = executeTask(new RxTarget(), new RxFlowableStringTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1, RxFlowableStringTask.RESULT)
-				.assertOther();
-	}
+    @Test
+    public void flowableStringTask() {
+        BaseTarget target = executeTask(new RxTarget(), new RxFlowableStringTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1, RxFlowableStringTask.RESULT)
+                .assertOther();
+    }
 
-	@Test
-	public void completableTask() {
-		BaseTarget target = executeTask(new RxTarget(), new RxCompletableTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1, null)
-				.assertOther();
-	}
+    @Test
+    public void completableTask() {
+        BaseTarget target = executeTask(new RxTarget(), new RxCompletableTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1, null)
+                .assertOther();
+    }
 
-	@Test
-	public void observableIntegerMultipleResultTask() {
-		BaseTarget target = executeTask(new RxTarget(), new RxObservableIntegerMultipleResultTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1, new Integer(1))
-				.assertOther();
+    @Test
+    public void observableIntegerMultipleResultTask() {
+        BaseTarget target = executeTask(new RxTarget(), new RxObservableIntegerMultipleResultTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1, new Integer(1))
+                .assertOther();
 
-		// TODO: check error messages in log!
-	}
+        // TODO: check error messages in log!
+    }
 
 }

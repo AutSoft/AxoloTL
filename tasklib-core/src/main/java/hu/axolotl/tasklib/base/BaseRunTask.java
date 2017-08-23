@@ -25,26 +25,26 @@ import io.reactivex.FlowableOnSubscribe;
 
 public abstract class BaseRunTask<T, U> extends BaseTask<T, U> {
 
-	@Override
-	public final Flowable<RxTaskMessage<T, U>> createFlowable() {
-		return Flowable.create(new FlowableOnSubscribe<RxTaskMessage<T, U>>() {
-			@Override
-			public void subscribe(final FlowableEmitter<RxTaskMessage<T, U>> e) throws Exception {
-				TaskLogger.v(TAG, "subscribe start");
-				T innerResult = run(new TaskAgent<U>() {
-					@Override
-					public void publishProgress(U progressObject) {
-						TaskLogger.v(TAG, "onProgress");
-						e.onNext(RxTaskMessage.<T, U>createProgress(progressObject));
-					}
-				});
-				e.onNext(RxTaskMessage.<T, U>createResult(innerResult));
-				e.onComplete();
-				TaskLogger.v(TAG, "subscribe end");
-			}
-		}, BackpressureStrategy.ERROR);
-	}
+    @Override
+    public final Flowable<RxTaskMessage<T, U>> createFlowable() {
+        return Flowable.create(new FlowableOnSubscribe<RxTaskMessage<T, U>>() {
+            @Override
+            public void subscribe(final FlowableEmitter<RxTaskMessage<T, U>> e) throws Exception {
+                TaskLogger.v(TAG, "subscribe start");
+                T innerResult = run(new TaskAgent<U>() {
+                    @Override
+                    public void publishProgress(U progressObject) {
+                        TaskLogger.v(TAG, "onProgress");
+                        e.onNext(RxTaskMessage.<T, U>createProgress(progressObject));
+                    }
+                });
+                e.onNext(RxTaskMessage.<T, U>createResult(innerResult));
+                e.onComplete();
+                TaskLogger.v(TAG, "subscribe end");
+            }
+        }, BackpressureStrategy.ERROR);
+    }
 
-	protected abstract T run(TaskAgent<U> agent);
+    protected abstract T run(TaskAgent<U> agent);
 
 }

@@ -35,82 +35,82 @@ import static org.junit.Assert.assertTrue;
 
 public class ReflectionTest extends TaskTestBase {
 
-	@Test
-	public void globalErrorFunction() {
-		{
-			ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithoutGlobal());
-			assertFalse(holder.hasGlobalErrorMethod());
-		}
-		{
-			ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobal());
-			assertTrue(holder.hasGlobalErrorMethod());
-		}
-		{
-			ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobalInParent());
-			assertTrue(holder.hasGlobalErrorMethod());
-		}
-	}
+    @Test
+    public void globalErrorFunction() {
+        {
+            ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithoutGlobal());
+            assertFalse(holder.hasGlobalErrorMethod());
+        }
+        {
+            ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobal());
+            assertTrue(holder.hasGlobalErrorMethod());
+        }
+        {
+            ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobalInParent());
+            assertTrue(holder.hasGlobalErrorMethod());
+        }
+    }
 
-	@Test
-	public void resultFunction() {
-		{
-			ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithoutGlobal());
-			assertFalse(holder.hasResultMethod(SimpleTask.class));
-			assertFalse(holder.hasResultMethod(TestSecondTask.class));
-		}
-		{
-			ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobal());
-			assertTrue(holder.hasResultMethod(SimpleTask.class));
-			assertFalse(holder.hasResultMethod(TestSecondTask.class));
-		}
-		{
-			ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobalInParent());
-			assertTrue(holder.hasResultMethod(SimpleTask.class));
-			assertTrue(holder.hasResultMethod(TestSecondTask.class));
-		}
-	}
+    @Test
+    public void resultFunction() {
+        {
+            ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithoutGlobal());
+            assertFalse(holder.hasResultMethod(SimpleTask.class));
+            assertFalse(holder.hasResultMethod(TestSecondTask.class));
+        }
+        {
+            ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobal());
+            assertTrue(holder.hasResultMethod(SimpleTask.class));
+            assertFalse(holder.hasResultMethod(TestSecondTask.class));
+        }
+        {
+            ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobalInParent());
+            assertTrue(holder.hasResultMethod(SimpleTask.class));
+            assertTrue(holder.hasResultMethod(TestSecondTask.class));
+        }
+    }
 
-	@Test
-	public void progressFunction() {
-		{
-			ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithoutGlobal());
-			assertFalse(holder.hasProgressMethod(SimpleTask.class));
-			assertFalse(holder.hasProgressMethod(TestSecondTask.class));
-		}
-		{
-			ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobal());
-			assertTrue(holder.hasProgressMethod(SimpleTask.class));
-			assertFalse(holder.hasProgressMethod(TestSecondTask.class));
-		}
-		{
-			ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobalInParent());
-			assertTrue(holder.hasProgressMethod(SimpleTask.class));
-			assertTrue(holder.hasProgressMethod(TestSecondTask.class));
-		}
-	}
+    @Test
+    public void progressFunction() {
+        {
+            ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithoutGlobal());
+            assertFalse(holder.hasProgressMethod(SimpleTask.class));
+            assertFalse(holder.hasProgressMethod(TestSecondTask.class));
+        }
+        {
+            ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobal());
+            assertTrue(holder.hasProgressMethod(SimpleTask.class));
+            assertFalse(holder.hasProgressMethod(TestSecondTask.class));
+        }
+        {
+            ReflectionTestTaskEngineHolder holder = new ReflectionTestTaskEngineHolder(new TestTargetWithGlobalInParent());
+            assertTrue(holder.hasProgressMethod(SimpleTask.class));
+            assertTrue(holder.hasProgressMethod(TestSecondTask.class));
+        }
+    }
 
-	@Test
-	public void invalidGlobalErrorFunctions() {
-		assertInvalidTarget(new TestTargetWithParamlessGlobal(), "Invalid args for GlobalError method");
-		assertInvalidTarget(new TestTargetWithTwoParamGlobal(), "Invalid args for GlobalError method");
-		assertInvalidTarget(new TestTargetWithWrongParamGlobal(), "Invalid arg class", "(instead of: class hu.axolotl.tasklib.GlobalError)");
-		assertInvalidTarget(new TestTargetWithVoidReturnTypeGlobal(), "Invalid return type", "(must be boolean)");
-		assertInvalidTarget(new TestTargetWithNotBooleanReturnTypeGlobal(), "Invalid return type", "(must be boolean)");
-	}
+    @Test
+    public void invalidGlobalErrorFunctions() {
+        assertInvalidTarget(new TestTargetWithParamlessGlobal(), "Invalid args for GlobalError method");
+        assertInvalidTarget(new TestTargetWithTwoParamGlobal(), "Invalid args for GlobalError method");
+        assertInvalidTarget(new TestTargetWithWrongParamGlobal(), "Invalid arg class", "(instead of: class hu.axolotl.tasklib.GlobalError)");
+        assertInvalidTarget(new TestTargetWithVoidReturnTypeGlobal(), "Invalid return type", "(must be boolean)");
+        assertInvalidTarget(new TestTargetWithNotBooleanReturnTypeGlobal(), "Invalid return type", "(must be boolean)");
+    }
 
-	private void assertInvalidTarget(Object target, String... expectedErrorContains) {
-		boolean hasException = false;
-		try {
-			new ReflectionTestTaskEngineHolder(target);
-		} catch (Exception ex) {
-			hasException = true;
-			assertNotNull(ex.getMessage());
-			for (String contains : expectedErrorContains) {
-				assertTrue("Exception message not contains: " + contains + "\nMessage: " + ex.getMessage(),
-						ex.getMessage().contains(contains));
-			}
-		}
-		assertTrue(hasException);
-	}
+    private void assertInvalidTarget(Object target, String... expectedErrorContains) {
+        boolean hasException = false;
+        try {
+            new ReflectionTestTaskEngineHolder(target);
+        } catch (Exception ex) {
+            hasException = true;
+            assertNotNull(ex.getMessage());
+            for (String contains : expectedErrorContains) {
+                assertTrue("Exception message not contains: " + contains + "\nMessage: " + ex.getMessage(),
+                        ex.getMessage().contains(contains));
+            }
+        }
+        assertTrue(hasException);
+    }
 
 }
