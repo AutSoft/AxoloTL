@@ -21,9 +21,9 @@ import hu.axolotl.taskcompiler.test.util.TestBase;
 
 public class CustomSchedulerTest extends TestBase {
 
-	@Test
-	public void taskWithCustomExecutor() {
-		assertWithComplexWorker("CustomExecutorTask");
-	}
+    @Test
+    public void taskWithCustomExecutor() {
+        assertWithComplexWorker("CustomExecutorTask");
+    }
 
 }

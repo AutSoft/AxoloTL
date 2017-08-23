@@ -19,14 +19,14 @@ import hu.axolotl.tasklib.TaskAgent;
 
 public abstract class BaseTestStringTask extends BaseTestTask {
 
-	@Override
-	public String run(TaskAgent agent) {
-		/*try {
+    @Override
+    public String run(TaskAgent agent) {
+        /*try {
 			Thread.sleep(3000);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}*/
-		return getClass().getSimpleName();
-	}
+        return getClass().getSimpleName();
+    }
 
 }

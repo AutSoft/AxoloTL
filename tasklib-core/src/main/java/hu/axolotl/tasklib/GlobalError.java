@@ -19,25 +19,25 @@ import hu.axolotl.tasklib.base.BaseTask;
 
 public class GlobalError {
 
-	private BaseTask task;
-	private int errorCode;
-	private Object errorObject;
+    private BaseTask task;
+    private int errorCode;
+    private Object errorObject;
 
-	public GlobalError(BaseTask task) {
-		this.task = task;
-		errorCode = task.getErrorCode();
-		errorObject = task.getErrorObject();
-	}
+    public GlobalError(BaseTask task) {
+        this.task = task;
+        errorCode = task.getErrorCode();
+        errorObject = task.getErrorObject();
+    }
 
-	public BaseTask getTask() {
-		return task;
-	}
+    public BaseTask getTask() {
+        return task;
+    }
 
-	public int getErrorCode() {
-		return errorCode;
-	}
+    public int getErrorCode() {
+        return errorCode;
+    }
 
-	public Object getErrorObject() {
-		return errorObject;
-	}
+    public Object getErrorObject() {
+        return errorObject;
+    }
 }

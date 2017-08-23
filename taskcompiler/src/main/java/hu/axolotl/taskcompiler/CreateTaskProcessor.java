@@ -38,78 +38,78 @@ import hu.axolotl.tasklib.annotation.Injector;
 //@AutoService(Processor.class)
 public class CreateTaskProcessor extends AbstractProcessor {
 
-	private static final String LOG_PRE_TAG = "TaskCompiler";
+    private static final String LOG_PRE_TAG = "TaskCompiler";
 
 
-	@Override
-	public Set<String> getSupportedAnnotationTypes() {
-		Set<String> set = new HashSet<>();
-		set.add(Injector.class.getName());
-		set.add(CreateTask.class.getName());
-		return set;
-	}
+    @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        Set<String> set = new HashSet<>();
+        set.add(Injector.class.getName());
+        set.add(CreateTask.class.getName());
+        return set;
+    }
 
-	@Override
-	public SourceVersion getSupportedSourceVersion() {
-		return SourceVersion.RELEASE_8;
-	}
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.RELEASE_8;
+    }
 
-	/**
-	 * @param annotations set of annotations found
-	 * @param roundEnv    the environment for this processor round
-	 * @return whether a new processor round would be needed
-	 */
-	@Override
-	public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-		ProcessorLogger.init(processingEnv, LOG_PRE_TAG);
-		if (annotations.isEmpty()) {
-			return true;
-		}
-		try {
-			FullModel fullModel = new FullModel();
-			evalStaticInjector(roundEnv, fullModel);
-			evalTaskAnnotations(roundEnv, fullModel);
-			fullModel.writeFiles(processingEnv);
-		} catch (ProcessorException ex) {
-			ProcessorLogger.processorException(ex);
-			return false;
-		} catch (Exception ex) {
-			ProcessorLogger.exception(ex);
-			return false;
-		}
+    /**
+     * @param annotations set of annotations found
+     * @param roundEnv    the environment for this processor round
+     * @return whether a new processor round would be needed
+     */
+    @Override
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        ProcessorLogger.init(processingEnv, LOG_PRE_TAG);
+        if (annotations.isEmpty()) {
+            return true;
+        }
+        try {
+            FullModel fullModel = new FullModel();
+            evalStaticInjector(roundEnv, fullModel);
+            evalTaskAnnotations(roundEnv, fullModel);
+            fullModel.writeFiles(processingEnv);
+        } catch (ProcessorException ex) {
+            ProcessorLogger.processorException(ex);
+            return false;
+        } catch (Exception ex) {
+            ProcessorLogger.exception(ex);
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	private void evalStaticInjector(RoundEnvironment roundEnv, FullModel fullModel) {
-		Element staticInjector = null;
-		ProcessorLogger.note("Injector annotation: " + roundEnv.getElementsAnnotatedWith(Injector.class).size());
-		for (Element e : roundEnv.getElementsAnnotatedWith(Injector.class)) {
-			if (staticInjector != null) {
-				throw new ProcessorException("Static injector already set!");
-			}
-			if (e.getKind() == ElementKind.FIELD) {
-				VariableElement varElement = (VariableElement) e;
-				Set<Modifier> modifiers = varElement.getModifiers();
-				if (!modifiers.contains(Modifier.PUBLIC) || !modifiers.contains(Modifier.STATIC)) {
-					throw new ProcessorException("Static injector is not public static!", e);
-				}
-				staticInjector = varElement;
-			}
-		}
-		if (staticInjector == null) {
-			throw new ProcessorException("Missing static injector!");
-		}
-		fullModel.setStaticInjector(staticInjector);
-	}
+    private void evalStaticInjector(RoundEnvironment roundEnv, FullModel fullModel) {
+        Element staticInjector = null;
+        ProcessorLogger.note("Injector annotation: " + roundEnv.getElementsAnnotatedWith(Injector.class).size());
+        for (Element e : roundEnv.getElementsAnnotatedWith(Injector.class)) {
+            if (staticInjector != null) {
+                throw new ProcessorException("Static injector already set!");
+            }
+            if (e.getKind() == ElementKind.FIELD) {
+                VariableElement varElement = (VariableElement) e;
+                Set<Modifier> modifiers = varElement.getModifiers();
+                if (!modifiers.contains(Modifier.PUBLIC) || !modifiers.contains(Modifier.STATIC)) {
+                    throw new ProcessorException("Static injector is not public static!", e);
+                }
+                staticInjector = varElement;
+            }
+        }
+        if (staticInjector == null) {
+            throw new ProcessorException("Missing static injector!");
+        }
+        fullModel.setStaticInjector(staticInjector);
+    }
 
-	private void evalTaskAnnotations(RoundEnvironment roundEnv, FullModel fullModel) {
-		ProcessorLogger.note("CreateTask annotation: " + roundEnv.getElementsAnnotatedWith(CreateTask.class).size());
-		for (Element e : roundEnv.getElementsAnnotatedWith(CreateTask.class)) {
-			if (e.getKind() == ElementKind.METHOD) {
-				ExecutableElement exeElement = (ExecutableElement) e;
-				fullModel.processMethod(exeElement);
-			}
-		}
-	}
+    private void evalTaskAnnotations(RoundEnvironment roundEnv, FullModel fullModel) {
+        ProcessorLogger.note("CreateTask annotation: " + roundEnv.getElementsAnnotatedWith(CreateTask.class).size());
+        for (Element e : roundEnv.getElementsAnnotatedWith(CreateTask.class)) {
+            if (e.getKind() == ElementKind.METHOD) {
+                ExecutableElement exeElement = (ExecutableElement) e;
+                fullModel.processMethod(exeElement);
+            }
+        }
+    }
 }

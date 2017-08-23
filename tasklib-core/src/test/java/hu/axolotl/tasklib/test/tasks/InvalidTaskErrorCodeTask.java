@@ -21,11 +21,11 @@ import hu.axolotl.tasklib.exception.TaskException;
 
 public class InvalidTaskErrorCodeTask extends BaseTestTask {
 
-	public InvalidTaskErrorCodeTask() {
-	}
+    public InvalidTaskErrorCodeTask() {
+    }
 
-	@Override
-	public String run(TaskAgent agent) {
-		throw new TaskException(-1);
-	}
+    @Override
+    public String run(TaskAgent agent) {
+        throw new TaskException(-1);
+    }
 }

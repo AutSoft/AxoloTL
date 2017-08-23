@@ -20,8 +20,8 @@ import hu.axolotl.tasklib.base.BaseTask;
 
 public class BaseInlineTaskListener extends BaseTargetTestResultHolder implements InlineTaskListener<String, String> {
 
-	@Override
-	public void onTaskResult(BaseTask<String, String> task) {
-		otr(task);
-	}
+    @Override
+    public void onTaskResult(BaseTask<String, String> task) {
+        otr(task);
+    }
 }

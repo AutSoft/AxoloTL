@@ -20,10 +20,10 @@ import io.reactivex.Flowable;
 
 public class RxFlowableStringTask extends BaseFlowableTask<String> {
 
-	public static final String RESULT = "a59res";
+    public static final String RESULT = "a59res";
 
-	@Override
-	protected Flowable<String> getRunFlowable() {
-		return Flowable.just(RESULT);
-	}
+    @Override
+    protected Flowable<String> getRunFlowable() {
+        return Flowable.just(RESULT);
+    }
 }

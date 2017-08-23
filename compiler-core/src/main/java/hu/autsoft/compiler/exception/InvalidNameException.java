@@ -17,7 +17,7 @@ package hu.autsoft.compiler.exception;
 
 public class InvalidNameException extends RuntimeException {
 
-	public InvalidNameException(Throwable throwable) {
-		super(throwable);
-	}
+    public InvalidNameException(Throwable throwable) {
+        super(throwable);
+    }
 }

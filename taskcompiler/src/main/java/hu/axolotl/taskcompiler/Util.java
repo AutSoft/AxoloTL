@@ -23,24 +23,24 @@ import hu.autsoft.compiler.TypeHelper;
 
 public class Util {
 
-	static TypeHelper getWorkerClass(Element workerClass) {
-		return TypeHelper.getTypeHelper(CompilerUtil.getPackageNameForClass(workerClass) + "." + workerClass.getSimpleName());
-	}
+    static TypeHelper getWorkerClass(Element workerClass) {
+        return TypeHelper.getTypeHelper(CompilerUtil.getPackageNameForClass(workerClass) + "." + workerClass.getSimpleName());
+    }
 
-	static TypeHelper getWorkerTaskHelperClass(Element workerClass) {
-		return TypeHelper.getTypeHelper(CompilerUtil.getPackageNameForClass(workerClass, "task") + "." + workerClass.getSimpleName() + "TaskHelper");
-	}
+    static TypeHelper getWorkerTaskHelperClass(Element workerClass) {
+        return TypeHelper.getTypeHelper(CompilerUtil.getPackageNameForClass(workerClass, "task") + "." + workerClass.getSimpleName() + "TaskHelper");
+    }
 
-	public static TypeHelper getTaskClass(ExecutableElement methodElement) {
-		Element workerClass = methodElement.getEnclosingElement();
-		String workerBasedPackageName = workerClass.getSimpleName().toString().toLowerCase();
-		String postName = "worker";
-		if (workerBasedPackageName.endsWith(postName)) {
-			workerBasedPackageName = workerBasedPackageName.substring(0, workerBasedPackageName.length() - postName.length());
-		}
-		String methodName = methodElement.getSimpleName().toString();
-		methodName = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
-		return TypeHelper.getTypeHelper(CompilerUtil.getPackageNameForClass(workerClass, "task." + workerBasedPackageName) + "." + methodName + "Task");
-	}
+    public static TypeHelper getTaskClass(ExecutableElement methodElement) {
+        Element workerClass = methodElement.getEnclosingElement();
+        String workerBasedPackageName = workerClass.getSimpleName().toString().toLowerCase();
+        String postName = "worker";
+        if (workerBasedPackageName.endsWith(postName)) {
+            workerBasedPackageName = workerBasedPackageName.substring(0, workerBasedPackageName.length() - postName.length());
+        }
+        String methodName = methodElement.getSimpleName().toString();
+        methodName = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+        return TypeHelper.getTypeHelper(CompilerUtil.getPackageNameForClass(workerClass, "task." + workerBasedPackageName) + "." + methodName + "Task");
+    }
 
 }

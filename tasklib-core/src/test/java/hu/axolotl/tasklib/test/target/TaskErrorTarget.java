@@ -20,8 +20,8 @@ import hu.axolotl.tasklib.test.tasks.TaskErrorTask;
 
 public class TaskErrorTarget extends BaseTarget {
 
-	void onTaskResult(TaskErrorTask task) {
-		otr(task);
-	}
+    void onTaskResult(TaskErrorTask task) {
+        otr(task);
+    }
 
 }

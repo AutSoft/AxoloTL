@@ -20,10 +20,10 @@ import io.reactivex.Observable;
 
 public class RxObservableIntegerTask extends BaseObservableTask<Integer> {
 
-	public static final int RESULT = 59;
+    public static final int RESULT = 59;
 
-	@Override
-	protected Observable<Integer> getRunObservable() {
-		return Observable.just(RESULT);
-	}
+    @Override
+    protected Observable<Integer> getRunObservable() {
+        return Observable.just(RESULT);
+    }
 }

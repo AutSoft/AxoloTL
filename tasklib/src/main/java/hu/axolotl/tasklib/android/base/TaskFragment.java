@@ -23,33 +23,33 @@ import hu.axolotl.tasklib.base.BaseTask;
 
 public class TaskFragment extends Fragment {
 
-	TaskEngineHolder holder;
+    TaskEngineHolder holder;
 
-	public TaskFragment() {
-		holder = new TaskEngineHolder(this);
-	}
+    public TaskFragment() {
+        holder = new TaskEngineHolder(this);
+    }
 
-	@Override
-	public void onResume() {
-		super.onResume();
-		holder.start();
-	}
+    @Override
+    public void onResume() {
+        super.onResume();
+        holder.start();
+    }
 
-	@Override
-	public void onPause() {
-		super.onPause();
-		holder.stop();
-	}
+    @Override
+    public void onPause() {
+        super.onPause();
+        holder.stop();
+    }
 
-	protected <T, U> long executeTask(BaseTask<T, U> task) {
-		return holder.executeTask(task);
-	}
+    protected <T, U> long executeTask(BaseTask<T, U> task) {
+        return holder.executeTask(task);
+    }
 
-	protected <T, U> long executeTask(BaseTask<T, U> task, InlineTaskListener<T, U> listener) {
-		return holder.executeTask(task, listener);
-	}
+    protected <T, U> long executeTask(BaseTask<T, U> task, InlineTaskListener<T, U> listener) {
+        return holder.executeTask(task, listener);
+    }
 
-	protected <T, U> boolean followTask(Class<? extends BaseTask<T, U>> taskClass) {
-		return holder.followTask(taskClass);
-	}
+    protected <T, U> boolean followTask(Class<? extends BaseTask<T, U>> taskClass) {
+        return holder.followTask(taskClass);
+    }
 }

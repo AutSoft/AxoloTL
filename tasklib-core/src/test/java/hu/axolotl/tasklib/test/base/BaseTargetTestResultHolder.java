@@ -22,26 +22,26 @@ import hu.axolotl.tasklib.util.TaskLogger;
 
 public abstract class BaseTargetTestResultHolder {
 
-	public static final String TAG = BaseTargetTestResultHolder.class.getSimpleName();
+    public static final String TAG = BaseTargetTestResultHolder.class.getSimpleName();
 
-	protected TargetTestResult targetTestResult = new TargetTestResult();
+    protected TargetTestResult targetTestResult = new TargetTestResult();
 
-	protected final void otp(BaseTestTask task, Object progress) {
-		targetTestResult.progressObjects.add(progress);
-		TaskLogger.d(TAG, "onTaskProgress (" + targetTestResult.progressObjects.size() + ")");
-	}
+    protected final void otp(BaseTestTask task, Object progress) {
+        targetTestResult.progressObjects.add(progress);
+        TaskLogger.d(TAG, "onTaskProgress (" + targetTestResult.progressObjects.size() + ")");
+    }
 
-	protected final void otr(BaseTask task) {
-		targetTestResult.resultCount++;
-		if (!task.hasError()) {
-			targetTestResult.lastResult = task.getResult();
-		} else {
-			targetTestResult.handleTaskError(task);
-		}
-	}
+    protected final void otr(BaseTask task) {
+        targetTestResult.resultCount++;
+        if (!task.hasError()) {
+            targetTestResult.lastResult = task.getResult();
+        } else {
+            targetTestResult.handleTaskError(task);
+        }
+    }
 
-	public final TargetTestResult createTargetTestResult() {
-		return new TargetTestResult(targetTestResult);
-	}
+    public final TargetTestResult createTargetTestResult() {
+        return new TargetTestResult(targetTestResult);
+    }
 
 }

@@ -32,57 +32,57 @@ import hu.axolotl.taskcompiler.task.BaseTaskModel;
 
 class WorkerTaskModel {
 
-	private final TypeHelper workerClass;
-	private final TypeHelper workerTaskHelperClass;
-	private List<BaseTaskModel> taskModels = new ArrayList<>();
+    private final TypeHelper workerClass;
+    private final TypeHelper workerTaskHelperClass;
+    private List<BaseTaskModel> taskModels = new ArrayList<>();
 
-	WorkerTaskModel(Element workerClass) {
-		this.workerClass = Util.getWorkerClass(workerClass);
-		workerTaskHelperClass = Util.getWorkerTaskHelperClass(workerClass);
-	}
+    WorkerTaskModel(Element workerClass) {
+        this.workerClass = Util.getWorkerClass(workerClass);
+        workerTaskHelperClass = Util.getWorkerTaskHelperClass(workerClass);
+    }
 
-	String getHelperFilename() {
-		return workerTaskHelperClass.getStrFullClassName();
-	}
+    String getHelperFilename() {
+        return workerTaskHelperClass.getStrFullClassName();
+    }
 
-	void addTaskModel(BaseTaskModel taskModel) {
-		taskModels.add(taskModel);
-	}
+    void addTaskModel(BaseTaskModel taskModel) {
+        taskModels.add(taskModel);
+    }
 
-	List<BaseTaskModel> getTaskModels() {
-		return taskModels;
-	}
+    List<BaseTaskModel> getTaskModels() {
+        return taskModels;
+    }
 
-	String getHelperJava(String injectorVariable) {
-		TypeSpec baseWorkerTaskClassSpec = TypeSpec.classBuilder(workerTaskHelperClass.getStrClassName())
-				.addModifiers(Modifier.PUBLIC)
-				.addField(FieldSpec.builder(workerClass.getTypeName(), "worker")
-						.addModifiers(Modifier.PROTECTED)
-						.addAnnotation(Inject.class)
-						.build())
-				.addMethod(MethodSpec.constructorBuilder()
-						.addModifiers(Modifier.PUBLIC)
-						.addStatement(injectorVariable + ".inject(this)")
-						.build())
-				.addMethod(MethodSpec.methodBuilder("getWorker")
-						.addModifiers(Modifier.PUBLIC)
-						.returns(workerClass.getTypeName())
-						.addStatement("return worker")
-						.build())
-				.addMethod(MethodSpec.methodBuilder("setWorker")
-						.addModifiers(Modifier.PUBLIC)
-						.addParameter(workerClass.getTypeName(), "worker")
-						.addStatement("this.worker = worker")
-						.build())
-				.build();
-		return CompilerUtil.getJavaString(workerTaskHelperClass.getStrPackageName(), baseWorkerTaskClassSpec);
-	}
+    String getHelperJava(String injectorVariable) {
+        TypeSpec baseWorkerTaskClassSpec = TypeSpec.classBuilder(workerTaskHelperClass.getStrClassName())
+                .addModifiers(Modifier.PUBLIC)
+                .addField(FieldSpec.builder(workerClass.getTypeName(), "worker")
+                        .addModifiers(Modifier.PROTECTED)
+                        .addAnnotation(Inject.class)
+                        .build())
+                .addMethod(MethodSpec.constructorBuilder()
+                        .addModifiers(Modifier.PUBLIC)
+                        .addStatement(injectorVariable + ".inject(this)")
+                        .build())
+                .addMethod(MethodSpec.methodBuilder("getWorker")
+                        .addModifiers(Modifier.PUBLIC)
+                        .returns(workerClass.getTypeName())
+                        .addStatement("return worker")
+                        .build())
+                .addMethod(MethodSpec.methodBuilder("setWorker")
+                        .addModifiers(Modifier.PUBLIC)
+                        .addParameter(workerClass.getTypeName(), "worker")
+                        .addStatement("this.worker = worker")
+                        .build())
+                .build();
+        return CompilerUtil.getJavaString(workerTaskHelperClass.getStrPackageName(), baseWorkerTaskClassSpec);
+    }
 
-	public TypeHelper getWorkerClass() {
-		return workerClass;
-	}
+    public TypeHelper getWorkerClass() {
+        return workerClass;
+    }
 
-	public TypeHelper getWorkerTaskHelperClass() {
-		return workerTaskHelperClass;
-	}
+    public TypeHelper getWorkerTaskHelperClass() {
+        return workerTaskHelperClass;
+    }
 }

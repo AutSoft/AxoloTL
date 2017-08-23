@@ -19,6 +19,6 @@ import hu.axolotl.tasklib.base.BaseTask;
 
 public interface InlineTaskListener<T, U> {
 
-	void onTaskResult(BaseTask<T, U> task);
+    void onTaskResult(BaseTask<T, U> task);
 
 }

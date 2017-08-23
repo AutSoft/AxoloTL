@@ -17,7 +17,7 @@ package hu.autsoft.compiler.exception;
 
 public class CacheException extends RuntimeException {
 
-	public CacheException(Throwable throwable) {
-		super(throwable);
-	}
+    public CacheException(Throwable throwable) {
+        super(throwable);
+    }
 }

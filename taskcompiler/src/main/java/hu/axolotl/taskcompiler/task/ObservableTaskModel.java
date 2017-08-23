@@ -23,27 +23,27 @@ import hu.autsoft.compiler.TypeHelper;
 import hu.axolotl.tasklib.base.BaseObservableTask;
 
 public class ObservableTaskModel extends BaseTaskModel {
-	ObservableTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
-		super(workerClass, workerTaskHelperClass, methodElement);
-	}
+    ObservableTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
+        super(workerClass, workerTaskHelperClass, methodElement);
+    }
 
-	@Override
-	protected TypeHelper getReturnType(TypeHelper fullReturnType) {
-		return fullReturnType.getParamTypeArgument();
-	}
+    @Override
+    protected TypeHelper getReturnType(TypeHelper fullReturnType) {
+        return fullReturnType.getParamTypeArgument();
+    }
 
-	@Override
-	protected TypeName getSuperClass() {
-		return convertReturnGeneric(BaseObservableTask.class);
-	}
+    @Override
+    protected TypeName getSuperClass() {
+        return convertReturnGeneric(BaseObservableTask.class);
+    }
 
-	@Override
-	protected String getRunFunctionName() {
-		return "getRunObservable";
-	}
+    @Override
+    protected String getRunFunctionName() {
+        return "getRunObservable";
+    }
 
-	@Override
-	protected boolean needAgentParamForRunFunction() {
-		return false;
-	}
+    @Override
+    protected boolean needAgentParamForRunFunction() {
+        return false;
+    }
 }

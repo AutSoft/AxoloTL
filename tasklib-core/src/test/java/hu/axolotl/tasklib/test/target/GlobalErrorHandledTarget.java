@@ -21,16 +21,16 @@ import hu.axolotl.tasklib.test.tasks.GlobalErrorTask;
 
 public class GlobalErrorHandledTarget extends BaseTarget {
 
-	void onTaskResult(GlobalErrorTask task) {
-		otr(task);
-	}
+    void onTaskResult(GlobalErrorTask task) {
+        otr(task);
+    }
 
-	void onTaskProgress(GlobalErrorTask task, Object progress) {
-		otp(task, progress);
-	}
+    void onTaskProgress(GlobalErrorTask task, Object progress) {
+        otp(task, progress);
+    }
 
-	@Override
-	protected boolean handleGlobalError(GlobalError error) {
-		return true;
-	}
+    @Override
+    protected boolean handleGlobalError(GlobalError error) {
+        return true;
+    }
 }

@@ -24,20 +24,20 @@ import hu.axolotl.tasklib.TaskEventListener;
 
 public class TaskLibStetho {
 
-	private static Gson gsonInstance;
+    private static Gson gsonInstance;
 
-	public static Gson getGsonInstance() {
-		return gsonInstance;
-	}
+    public static Gson getGsonInstance() {
+        return gsonInstance;
+    }
 
-	public static void init() {
-		init(new GsonBuilder().create());
-	}
+    public static void init() {
+        init(new GsonBuilder().create());
+    }
 
-	public static void init(Gson gsonInstance) {
-		CLog.writeToConsole(Console.MessageLevel.LOG, Console.MessageSource.OTHER, "TaskLibStetho.init");
-		TaskLibStetho.gsonInstance = gsonInstance;
-		TaskEventListener.setInstance(new StethoEventListener());
-	}
+    public static void init(Gson gsonInstance) {
+        CLog.writeToConsole(Console.MessageLevel.LOG, Console.MessageSource.OTHER, "TaskLibStetho.init");
+        TaskLibStetho.gsonInstance = gsonInstance;
+        TaskEventListener.setInstance(new StethoEventListener());
+    }
 
 }

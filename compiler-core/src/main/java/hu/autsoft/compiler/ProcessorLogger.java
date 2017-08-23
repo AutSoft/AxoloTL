@@ -21,42 +21,42 @@ import javax.tools.Diagnostic;
 
 public class ProcessorLogger {
 
-	private static ProcessingEnvironment processingEnvironment;
-	private static String logTag;
+    private static ProcessingEnvironment processingEnvironment;
+    private static String logTag;
 
-	public static void init(ProcessingEnvironment processingEnvironment, String logTag) {
-		ProcessorLogger.processingEnvironment = processingEnvironment;
-		ProcessorLogger.logTag = logTag;
-	}
+    public static void init(ProcessingEnvironment processingEnvironment, String logTag) {
+        ProcessorLogger.processingEnvironment = processingEnvironment;
+        ProcessorLogger.logTag = logTag;
+    }
 
-	private static String formatMessage(String msg) {
-		return "[" + logTag + "] " + msg;
-	}
+    private static String formatMessage(String msg) {
+        return "[" + logTag + "] " + msg;
+    }
 
-	public static void note(String msg) {
-		processingEnvironment.getMessager().printMessage(Diagnostic.Kind.NOTE, formatMessage(msg));
-	}
+    public static void note(String msg) {
+        processingEnvironment.getMessager().printMessage(Diagnostic.Kind.NOTE, formatMessage(msg));
+    }
 
-	public static void error(String msg) {
-		processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, formatMessage(msg));
-	}
+    public static void error(String msg) {
+        processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, formatMessage(msg));
+    }
 
-	public static void error(String msg, Element e) {
-		processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, formatMessage(msg), e);
-	}
+    public static void error(String msg, Element e) {
+        processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, formatMessage(msg), e);
+    }
 
-	public static void exception(Exception ex) {
-		processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, formatMessage("Exception: " + ex));
-		for (StackTraceElement stackTraceElement : ex.getStackTrace()) {
-			processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, "\t" + stackTraceElement);
-		}
-	}
+    public static void exception(Exception ex) {
+        processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, formatMessage("Exception: " + ex));
+        for (StackTraceElement stackTraceElement : ex.getStackTrace()) {
+            processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, "\t" + stackTraceElement);
+        }
+    }
 
-	public static void processorException(ProcessorException ex) {
-		processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, formatMessage("Exception: " + ex + " - " + ex.getMessage()), ex.getElement());
-		for (StackTraceElement stackTraceElement : ex.getStackTrace()) {
-			processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, "\t" + stackTraceElement);
-		}
-	}
+    public static void processorException(ProcessorException ex) {
+        processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, formatMessage("Exception: " + ex + " - " + ex.getMessage()), ex.getElement());
+        for (StackTraceElement stackTraceElement : ex.getStackTrace()) {
+            processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, "\t" + stackTraceElement);
+        }
+    }
 
 }

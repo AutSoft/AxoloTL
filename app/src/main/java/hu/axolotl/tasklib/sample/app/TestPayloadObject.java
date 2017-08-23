@@ -17,15 +17,15 @@ package hu.axolotl.tasklib.sample.app;
 
 public class TestPayloadObject {
 
-	String name = "TestPayloadObject";
-	int abc = 4;
-	Double z = 9.0;
-	Object obj = new Object();
-	Inner inner = new Inner();
+    String name = "TestPayloadObject";
+    int abc = 4;
+    Double z = 9.0;
+    Object obj = new Object();
+    Inner inner = new Inner();
 
-	static class Inner {
-		String innerName = "New Inner Class";
-		int zO = 9;
-	}
+    static class Inner {
+        String innerName = "New Inner Class";
+        int zO = 9;
+    }
 
 }

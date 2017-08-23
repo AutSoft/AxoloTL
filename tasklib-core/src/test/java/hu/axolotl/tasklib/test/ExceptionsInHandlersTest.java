@@ -25,45 +25,45 @@ import hu.axolotl.tasklib.test.tasks.ProgressTask;
 
 public class ExceptionsInHandlersTest extends TaskTestBase {
 
-	@Test
-	public void exceptionInResult() {
-		BaseTarget target = executeTask(new ExceptionInHandlersTarget(false, true), new ProgressTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertProgressOrdered(ProgressTask.getProgresses())
-				.assertExceptionInCallbacks(1, 0, 0)
-				.assertOther();
-	}
+    @Test
+    public void exceptionInResult() {
+        BaseTarget target = executeTask(new ExceptionInHandlersTarget(false, true), new ProgressTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertProgressOrdered(ProgressTask.getProgresses())
+                .assertExceptionInCallbacks(1, 0, 0)
+                .assertOther();
+    }
 
-	@Test
-	public void exceptionInProgress() {
-		BaseTarget target = executeTask(new ExceptionInHandlersTarget(true, false), new ProgressTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertExceptionInCallbacks(0, ProgressTask.getProgresses().length, 0)
-				.assertOther();
-	}
+    @Test
+    public void exceptionInProgress() {
+        BaseTarget target = executeTask(new ExceptionInHandlersTarget(true, false), new ProgressTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertExceptionInCallbacks(0, ProgressTask.getProgresses().length, 0)
+                .assertOther();
+    }
 
-	@Test
-	public void exceptionInProgressAndResult() {
-		BaseTarget target = executeTask(new ExceptionInHandlersTarget(true, true), new ProgressTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertExceptionInCallbacks(1, ProgressTask.getProgresses().length, 0)
-				.assertOther();
-	}
+    @Test
+    public void exceptionInProgressAndResult() {
+        BaseTarget target = executeTask(new ExceptionInHandlersTarget(true, true), new ProgressTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertExceptionInCallbacks(1, ProgressTask.getProgresses().length, 0)
+                .assertOther();
+    }
 
-	@Test
-	public void exceptionInGlobalErrorHandler() {
-		BaseTarget target = executeTask(new GlobalErrorExceptionTarget(), new GlobalErrorTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertExceptionInCallbacks(0, 0, 1)
-				.assertTaskErrorFromGlobal(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
-				.assertOther();
-	}
+    @Test
+    public void exceptionInGlobalErrorHandler() {
+        BaseTarget target = executeTask(new GlobalErrorExceptionTarget(), new GlobalErrorTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertExceptionInCallbacks(0, 0, 1)
+                .assertTaskErrorFromGlobal(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
+                .assertOther();
+    }
 
 
 }

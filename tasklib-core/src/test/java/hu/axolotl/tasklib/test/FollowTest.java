@@ -25,86 +25,86 @@ import static org.junit.Assert.assertTrue;
 
 public class FollowTest extends TaskTestBase {
 
-	@Test
-	public void followResult() {
-		FollowTarget target1 = createHolderAndStart(new FollowTarget());
-		FollowTarget target2 = createHolderAndStart(new FollowTarget());
-		FollowTarget target3 = createHolderAndStart(new FollowTarget());
-		target2.subscribeTask(ProgressTask.class);
-		target1.executeTask(new ProgressTask());
-		waitForHoldersAndStop();
+    @Test
+    public void followResult() {
+        FollowTarget target1 = createHolderAndStart(new FollowTarget());
+        FollowTarget target2 = createHolderAndStart(new FollowTarget());
+        FollowTarget target3 = createHolderAndStart(new FollowTarget());
+        target2.subscribeTask(ProgressTask.class);
+        target1.executeTask(new ProgressTask());
+        waitForHoldersAndStop();
 
-		target1.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertProgressOrdered(1, 2, 3, 4)
-				.assertOther();
-		target2.createTargetTestResult()
-				.assertSubmittedCount(0)
-				.assertResultCount(1)
-				.assertProgressOrdered(1, 2, 3, 4)
-				.assertOther();
-		target3.createTargetTestResult()
-				.assertSubmittedCount(0)
-				.assertResultCount(0)
-				.assertOther();
-	}
+        target1.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertProgressOrdered(1, 2, 3, 4)
+                .assertOther();
+        target2.createTargetTestResult()
+                .assertSubmittedCount(0)
+                .assertResultCount(1)
+                .assertProgressOrdered(1, 2, 3, 4)
+                .assertOther();
+        target3.createTargetTestResult()
+                .assertSubmittedCount(0)
+                .assertResultCount(0)
+                .assertOther();
+    }
 
-	@Test
-	public void followWhenRunning() {
-		FollowTarget target1 = createHolderAndStart(new FollowTarget());
-		FollowTarget target2 = createHolderAndStart(new FollowTarget());
-		FollowTarget target3 = createHolderAndStart(new FollowTarget());
-		boolean isRunning_2 = target2.subscribeTask(ProgressTask.class);
-		target1.executeTask(new ProgressTask());
-		boolean isRunning_3 = target3.subscribeTask(ProgressTask.class);
-		waitForHoldersAndStop();
+    @Test
+    public void followWhenRunning() {
+        FollowTarget target1 = createHolderAndStart(new FollowTarget());
+        FollowTarget target2 = createHolderAndStart(new FollowTarget());
+        FollowTarget target3 = createHolderAndStart(new FollowTarget());
+        boolean isRunning_2 = target2.subscribeTask(ProgressTask.class);
+        target1.executeTask(new ProgressTask());
+        boolean isRunning_3 = target3.subscribeTask(ProgressTask.class);
+        waitForHoldersAndStop();
 
-		assertFalse(isRunning_2);
-		assertTrue(isRunning_3);
-		target1.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertProgressOrdered(1, 2, 3, 4)
-				.assertOther();
-		target2.createTargetTestResult()
-				.assertSubmittedCount(0)
-				.assertResultCount(1)
-				.assertProgressOrdered(1, 2, 3, 4)
-				.assertOther();
-		target3.createTargetTestResult()
-				.assertSubmittedCount(0)
-				.assertResultCount(1)
-				.assertProgressOrdered(1, 2, 3, 4)
-				.assertOther();
-	}
+        assertFalse(isRunning_2);
+        assertTrue(isRunning_3);
+        target1.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertProgressOrdered(1, 2, 3, 4)
+                .assertOther();
+        target2.createTargetTestResult()
+                .assertSubmittedCount(0)
+                .assertResultCount(1)
+                .assertProgressOrdered(1, 2, 3, 4)
+                .assertOther();
+        target3.createTargetTestResult()
+                .assertSubmittedCount(0)
+                .assertResultCount(1)
+                .assertProgressOrdered(1, 2, 3, 4)
+                .assertOther();
+    }
 
-	@Test
-	public void followResultFromSameHolder_And_Execute() {
-		FollowTarget target1 = createHolderAndStart(new FollowTarget());
-		target1.executeTask(new ProgressTask());
-		target1.subscribeTask(ProgressTask.class);
-		waitForHoldersAndStop();
+    @Test
+    public void followResultFromSameHolder_And_Execute() {
+        FollowTarget target1 = createHolderAndStart(new FollowTarget());
+        target1.executeTask(new ProgressTask());
+        target1.subscribeTask(ProgressTask.class);
+        waitForHoldersAndStop();
 
-		target1.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertProgressOrdered(1, 2, 3, 4)
-				.assertOther();
-	}
+        target1.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertProgressOrdered(1, 2, 3, 4)
+                .assertOther();
+    }
 
-	@Test
-	public void execute_And_FollowResultFromSameHolder() {
-		FollowTarget target1 = createHolderAndStart(new FollowTarget());
-		target1.executeTask(new ProgressTask());
-		target1.subscribeTask(ProgressTask.class);
-		waitForHoldersAndStop();
+    @Test
+    public void execute_And_FollowResultFromSameHolder() {
+        FollowTarget target1 = createHolderAndStart(new FollowTarget());
+        target1.executeTask(new ProgressTask());
+        target1.subscribeTask(ProgressTask.class);
+        waitForHoldersAndStop();
 
-		target1.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertProgressOrdered(1, 2, 3, 4)
-				.assertOther();
-	}
+        target1.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertProgressOrdered(1, 2, 3, 4)
+                .assertOther();
+    }
 
 }

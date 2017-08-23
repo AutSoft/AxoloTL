@@ -17,7 +17,7 @@ package hu.autsoft.compiler.exception;
 
 public class NoClassNameException extends RuntimeException {
 
-	public NoClassNameException(String fullClassName, String name) {
-		super("No className for: " + fullClassName + " (" + name + ")");
-	}
+    public NoClassNameException(String fullClassName, String name) {
+        super("No className for: " + fullClassName + " (" + name + ")");
+    }
 }

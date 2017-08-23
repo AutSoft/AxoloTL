@@ -21,24 +21,24 @@ import hu.axolotl.taskcompiler.test.util.TestBase;
 
 public class TaskWithParamTest extends TestBase {
 
-	@Test
-	public void intParamTask() {
-		assertWithComplexWorker("IntParamTask");
-	}
+    @Test
+    public void intParamTask() {
+        assertWithComplexWorker("IntParamTask");
+    }
 
-	@Test
-	public void objectParamTask() {
-		assertWithComplexWorker("ObjectParamTask");
-	}
+    @Test
+    public void objectParamTask() {
+        assertWithComplexWorker("ObjectParamTask");
+    }
 
-	@Test
-	public void multipleParamTask() {
-		assertWithComplexWorker("MultipleParamTask");
-	}
+    @Test
+    public void multipleParamTask() {
+        assertWithComplexWorker("MultipleParamTask");
+    }
 
-	@Test
-	public void multipleParamWithObjectReturnTask() {
-		assertWithComplexWorker("MultipleParamWithObjectReturnTask");
-	}
+    @Test
+    public void multipleParamWithObjectReturnTask() {
+        assertWithComplexWorker("MultipleParamWithObjectReturnTask");
+    }
 
 }

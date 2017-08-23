@@ -17,35 +17,35 @@ package hu.axolotl.tasklib.test;
 
 public class TestObject {
 
-	public static TestObject create() {
-		return new TestObject();
-	}
+    public static TestObject create() {
+        return new TestObject();
+    }
 
-	public static TestObject createModified() {
-		TestObject testObject = new TestObject();
-		testObject.number += 1;
-		testObject.text += "!";
-		return testObject;
-	}
+    public static TestObject createModified() {
+        TestObject testObject = new TestObject();
+        testObject.number += 1;
+        testObject.text += "!";
+        return testObject;
+    }
 
-	public static final int TEST_ERROR_CODE = 67;
-	public static final int TEST_ERROR_CODE_OTHER = 68;
+    public static final int TEST_ERROR_CODE = 67;
+    public static final int TEST_ERROR_CODE_OTHER = 68;
 
-	int number = 3;
-	String text = "TestObjectText";
+    int number = 3;
+    String text = "TestObjectText";
 
-	private TestObject() {
-	}
+    private TestObject() {
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-		TestObject that = (TestObject) o;
+        TestObject that = (TestObject) o;
 
-		if (number != that.number) return false;
-		return text != null ? text.equals(that.text) : that.text == null;
+        if (number != that.number) return false;
+        return text != null ? text.equals(that.text) : that.text == null;
 
-	}
+    }
 }

@@ -34,41 +34,41 @@ import static org.mockito.Mockito.times;
 @PrepareForTest(android.util.Log.class)
 public class AndroidLoggerTest {
 
-	private static final String TEST_TAG = "TestTag";
-	private static final String TEST_MESSAGE = "TestMessage";
+    private static final String TEST_TAG = "TestTag";
+    private static final String TEST_MESSAGE = "TestMessage";
 
-	@Before
-	public void before() {
-		AndroidTaskInitializer.init();
-	}
+    @Before
+    public void before() {
+        AndroidTaskInitializer.init();
+    }
 
-	@Test
-	public void verbose() throws Exception {
-		PowerMockito.mockStatic(Log.class);
+    @Test
+    public void verbose() throws Exception {
+        PowerMockito.mockStatic(Log.class);
 
-		AndroidTaskLogger.v(TEST_TAG, TEST_MESSAGE);
+        AndroidTaskLogger.v(TEST_TAG, TEST_MESSAGE);
 
-		PowerMockito.verifyStatic(times(1));
-		Log.v(anyString(), anyString());
-	}
+        PowerMockito.verifyStatic(times(1));
+        Log.v(anyString(), anyString());
+    }
 
-	@Test
-	public void debug() throws Exception {
-		PowerMockito.mockStatic(Log.class);
+    @Test
+    public void debug() throws Exception {
+        PowerMockito.mockStatic(Log.class);
 
-		AndroidTaskLogger.d(TEST_TAG, TEST_MESSAGE);
+        AndroidTaskLogger.d(TEST_TAG, TEST_MESSAGE);
 
-		PowerMockito.verifyStatic(times(1));
-		Log.d(anyString(), anyString());
-	}
+        PowerMockito.verifyStatic(times(1));
+        Log.d(anyString(), anyString());
+    }
 
-	@Test
-	public void error() throws Exception {
-		PowerMockito.mockStatic(Log.class);
+    @Test
+    public void error() throws Exception {
+        PowerMockito.mockStatic(Log.class);
 
-		AndroidTaskLogger.e(TEST_TAG, TEST_MESSAGE);
+        AndroidTaskLogger.e(TEST_TAG, TEST_MESSAGE);
 
-		PowerMockito.verifyStatic(times(1));
-		Log.e(anyString(), anyString());
-	}
+        PowerMockito.verifyStatic(times(1));
+        Log.e(anyString(), anyString());
+    }
 }

@@ -23,22 +23,22 @@ import static hu.axolotl.tasklib.test.TestObject.TEST_ERROR_CODE;
 
 public class TaskExceptionOkTest extends TestBase {
 
-	@Test
-	public void code() {
-		assertMatcherOk(TaskExceptionMatcher.codeWithoutObjectCheck(TEST_ERROR_CODE),
-				new TaskException(TEST_ERROR_CODE));
-	}
+    @Test
+    public void code() {
+        assertMatcherOk(TaskExceptionMatcher.codeWithoutObjectCheck(TEST_ERROR_CODE),
+                new TaskException(TEST_ERROR_CODE));
+    }
 
-	@Test
-	public void codeWithNullObject() {
-		assertMatcherOk(TaskExceptionMatcher.codeWithNullObject(TEST_ERROR_CODE),
-				new TaskException(TEST_ERROR_CODE));
-	}
+    @Test
+    public void codeWithNullObject() {
+        assertMatcherOk(TaskExceptionMatcher.codeWithNullObject(TEST_ERROR_CODE),
+                new TaskException(TEST_ERROR_CODE));
+    }
 
-	@Test
-	public void codeWithObject() {
-		assertMatcherOk(TaskExceptionMatcher.codeWithObject(TEST_ERROR_CODE, TestObject.create()),
-				new TaskException(TEST_ERROR_CODE, TestObject.create()));
-	}
+    @Test
+    public void codeWithObject() {
+        assertMatcherOk(TaskExceptionMatcher.codeWithObject(TEST_ERROR_CODE, TestObject.create()),
+                new TaskException(TEST_ERROR_CODE, TestObject.create()));
+    }
 
 }

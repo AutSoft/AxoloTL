@@ -20,8 +20,8 @@ import io.reactivex.Observable;
 
 public class RxObservableIntegerMultipleResultTask extends BaseObservableTask<Integer> {
 
-	@Override
-	protected Observable<Integer> getRunObservable() {
-		return Observable.just(1, 3, 4);
-	}
+    @Override
+    protected Observable<Integer> getRunObservable() {
+        return Observable.just(1, 3, 4);
+    }
 }

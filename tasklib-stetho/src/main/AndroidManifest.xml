@@ -1,4 +1,5 @@
 <manifest package="hu.axolotl.tasklib.stetho">
-	<application>
-	</application>
+
+    <application>
+    </application>
 </manifest>

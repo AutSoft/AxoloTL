@@ -22,11 +22,11 @@ import hu.axolotl.tasklib.GlobalError;
 
 public class GlobalErrorMethodDescriptor extends MethodDescriptor {
 
-	public GlobalErrorMethodDescriptor(Method method) {
-		super(GlobalError.class, method);
-	}
+    public GlobalErrorMethodDescriptor(Method method) {
+        super(GlobalError.class, method);
+    }
 
-	public Object invoke(Object object, GlobalError globalError) throws InvokeException {
-		return invokeMethod(object, globalError);
-	}
+    public Object invoke(Object object, GlobalError globalError) throws InvokeException {
+        return invokeMethod(object, globalError);
+    }
 }

@@ -21,12 +21,12 @@ import io.reactivex.Flowable;
 
 public abstract class BaseCompletableTask extends BaseTask<Void, Void> {
 
-	@Override
-	public final Flowable<RxTaskMessage<Void, Void>> createFlowable() {
-		return getRunCompletable()
-				.andThen(Flowable.just(RxTaskMessage.<Void, Void>createResult(null)));
-	}
+    @Override
+    public final Flowable<RxTaskMessage<Void, Void>> createFlowable() {
+        return getRunCompletable()
+                .andThen(Flowable.just(RxTaskMessage.<Void, Void>createResult(null)));
+    }
 
-	protected abstract Completable getRunCompletable();
+    protected abstract Completable getRunCompletable();
 
 }

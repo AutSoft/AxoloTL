@@ -23,27 +23,27 @@ import hu.autsoft.compiler.TypeHelper;
 import hu.axolotl.tasklib.base.BaseSingleTask;
 
 public class SingleTaskModel extends BaseTaskModel {
-	SingleTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
-		super(workerClass, workerTaskHelperClass, methodElement);
-	}
+    SingleTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
+        super(workerClass, workerTaskHelperClass, methodElement);
+    }
 
-	@Override
-	protected TypeHelper getReturnType(TypeHelper fullReturnType) {
-		return fullReturnType.getParamTypeArgument();
-	}
+    @Override
+    protected TypeHelper getReturnType(TypeHelper fullReturnType) {
+        return fullReturnType.getParamTypeArgument();
+    }
 
-	@Override
-	protected TypeName getSuperClass() {
-		return convertReturnGeneric(BaseSingleTask.class);
-	}
+    @Override
+    protected TypeName getSuperClass() {
+        return convertReturnGeneric(BaseSingleTask.class);
+    }
 
-	@Override
-	protected String getRunFunctionName() {
-		return "getRunSingle";
-	}
+    @Override
+    protected String getRunFunctionName() {
+        return "getRunSingle";
+    }
 
-	@Override
-	protected boolean needAgentParamForRunFunction() {
-		return false;
-	}
+    @Override
+    protected boolean needAgentParamForRunFunction() {
+        return false;
+    }
 }

@@ -6,16 +6,16 @@ import hu.axolotl.test.task.RxWorkerTaskHelper;
 import io.reactivex.Completable;
 
 public class CompletableTask extends BaseCompletableTask {
-	protected RxWorker worker;
+    protected RxWorker worker;
 
-	public DoubleSingleTask() {
-		RxWorkerTaskHelper helper = new RxWorkerTaskHelper();
-		worker = helper.getWorker();
-		setSchedulerId(0);
-	}
+    public DoubleSingleTask() {
+        RxWorkerTaskHelper helper = new RxWorkerTaskHelper();
+        worker = helper.getWorker();
+        setSchedulerId(0);
+    }
 
-	@Override
-	public Completable getRunCompletable() {
-		return worker.completable();
-	}
+    @Override
+    public Completable getRunCompletable() {
+        return worker.completable();
+    }
 }

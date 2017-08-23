@@ -22,40 +22,40 @@ import hu.axolotl.tasklib.stetho.exception.GetParamInvokeException;
 
 public class TaskStethoHeader {
 
-	private static final String PRE_GET_PARAM_METHOD = "getParam";
+    private static final String PRE_GET_PARAM_METHOD = "getParam";
 
-	static TaskStethoHeader createResponseHeader(String name, Object value) {
-		return new TaskStethoHeader(name, value);
-	}
+    static TaskStethoHeader createResponseHeader(String name, Object value) {
+        return new TaskStethoHeader(name, value);
+    }
 
-	static TaskStethoHeader createTaskRequestHeader(Method method, BaseTask task) {
-		try {
-			return new TaskStethoHeader(
-					method.getName().replaceFirst(PRE_GET_PARAM_METHOD, ""),
-					method.invoke(task)
-			);
-		} catch (Exception ex) {
-			throw new GetParamInvokeException(ex);
-		}
-	}
+    static TaskStethoHeader createTaskRequestHeader(Method method, BaseTask task) {
+        try {
+            return new TaskStethoHeader(
+                    method.getName().replaceFirst(PRE_GET_PARAM_METHOD, ""),
+                    method.invoke(task)
+            );
+        } catch (Exception ex) {
+            throw new GetParamInvokeException(ex);
+        }
+    }
 
-	private String name;
-	private Object value;
+    private String name;
+    private Object value;
 
-	private TaskStethoHeader(String name, Object value) {
-		this.name = name;
-		this.value = value;
-	}
+    private TaskStethoHeader(String name, Object value) {
+        this.name = name;
+        this.value = value;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Object getValue() {
-		return value;
-	}
+    public Object getValue() {
+        return value;
+    }
 
-	public String getValueStr() {
-		return String.valueOf(value);
-	}
+    public String getValueStr() {
+        return String.valueOf(value);
+    }
 }

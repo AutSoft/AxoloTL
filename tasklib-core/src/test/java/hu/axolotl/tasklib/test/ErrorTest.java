@@ -31,111 +31,111 @@ import hu.axolotl.tasklib.test.tasks.TaskErrorTask;
 
 public class ErrorTest extends TaskTestBase {
 
-	@Test
-	public void invalidTaskErrorCode() {
-		BaseTarget target = executeTask(new InvalidTaskErrorCodeTarget(), new InvalidTaskErrorCodeTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertTaskError(InvalidTaskErrorCodeException.class)
-				.assertOther();
-	}
+    @Test
+    public void invalidTaskErrorCode() {
+        BaseTarget target = executeTask(new InvalidTaskErrorCodeTarget(), new InvalidTaskErrorCodeTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertTaskError(InvalidTaskErrorCodeException.class)
+                .assertOther();
+    }
 
-	@Test
-	public void innerException() {
-		BaseTarget target = executeTask(new InnerExceptionTarget(), new InnerExceptionTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertTaskError(InnerExceptionTask.CustomInnerException.class)
-				.assertOther();
-	}
+    @Test
+    public void innerException() {
+        BaseTarget target = executeTask(new InnerExceptionTarget(), new InnerExceptionTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertTaskError(InnerExceptionTask.CustomInnerException.class)
+                .assertOther();
+    }
 
-	@Test
-	public void taskError() {
-		BaseTarget target = executeTask(new TaskErrorTarget(), new TaskErrorTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertTaskError(TaskErrorTask.TASK_ERROR_CODE)
-				.assertOther();
-	}
+    @Test
+    public void taskError() {
+        BaseTarget target = executeTask(new TaskErrorTarget(), new TaskErrorTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertTaskError(TaskErrorTask.TASK_ERROR_CODE)
+                .assertOther();
+    }
 
-	@Test
-	public void taskErrorWithObject() {
-		Object errorObject = 121;
-		BaseTarget target = executeTask(new TaskErrorTarget(), new TaskErrorTask(errorObject));
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertTaskError(TaskErrorTask.TASK_ERROR_CODE, errorObject)
-				.assertOther();
-	}
+    @Test
+    public void taskErrorWithObject() {
+        Object errorObject = 121;
+        BaseTarget target = executeTask(new TaskErrorTarget(), new TaskErrorTask(errorObject));
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertTaskError(TaskErrorTask.TASK_ERROR_CODE, errorObject)
+                .assertOther();
+    }
 
-	@Test
-	public void globalErrorHandled() {
-		BaseTarget target = executeTask(new GlobalErrorHandledTarget(), new GlobalErrorTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(0)
-				.assertGlobalError(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
-				.assertOther();
-	}
+    @Test
+    public void globalErrorHandled() {
+        BaseTarget target = executeTask(new GlobalErrorHandledTarget(), new GlobalErrorTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(0)
+                .assertGlobalError(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
+                .assertOther();
+    }
 
-	@Test
-	public void globalErrorWithObjectHandled() {
-		Object errorObject = 109;
-		BaseTarget target = executeTask(new GlobalErrorHandledTarget(), new GlobalErrorTask(errorObject));
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(0)
-				.assertGlobalError(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE, errorObject)
-				.assertOther();
-	}
+    @Test
+    public void globalErrorWithObjectHandled() {
+        Object errorObject = 109;
+        BaseTarget target = executeTask(new GlobalErrorHandledTarget(), new GlobalErrorTask(errorObject));
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(0)
+                .assertGlobalError(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE, errorObject)
+                .assertOther();
+    }
 
-	@Test
-	public void globalErrorHandledInSecondTarget() {
-		BaseTarget target1 = createHolderAndStart(new GlobalErrorNotHandledTarget());
-		BaseTarget target2 = createHolderAndStart(new GlobalErrorHandledTarget());
-		target1.executeTask(new GlobalErrorTask());
-		waitForHoldersAndStop();
-		target1.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(0)
-				.assertOther();
-		target2.createTargetTestResult()
-				.assertSubmittedCount(0)
-				.assertResultCount(0)
-				.assertGlobalError(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
-				.assertOther();
-	}
+    @Test
+    public void globalErrorHandledInSecondTarget() {
+        BaseTarget target1 = createHolderAndStart(new GlobalErrorNotHandledTarget());
+        BaseTarget target2 = createHolderAndStart(new GlobalErrorHandledTarget());
+        target1.executeTask(new GlobalErrorTask());
+        waitForHoldersAndStop();
+        target1.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(0)
+                .assertOther();
+        target2.createTargetTestResult()
+                .assertSubmittedCount(0)
+                .assertResultCount(0)
+                .assertGlobalError(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
+                .assertOther();
+    }
 
-	@Test
-	public void globalErrorHandledInSourceTarget() {
-		BaseTarget target1 = createHolderAndStart(new GlobalErrorHandledTarget());
-		BaseTarget target2 = createHolderAndStart(new GlobalErrorHandledTarget());
-		target2.executeTask(new GlobalErrorTask());
-		waitForHoldersAndStop();
-		target1.createTargetTestResult()
-				.assertSubmittedCount(0)
-				.assertResultCount(0)
-				.assertOther();
-		target2.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(0)
-				.assertGlobalError(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
-				.assertOther();
-	}
+    @Test
+    public void globalErrorHandledInSourceTarget() {
+        BaseTarget target1 = createHolderAndStart(new GlobalErrorHandledTarget());
+        BaseTarget target2 = createHolderAndStart(new GlobalErrorHandledTarget());
+        target2.executeTask(new GlobalErrorTask());
+        waitForHoldersAndStop();
+        target1.createTargetTestResult()
+                .assertSubmittedCount(0)
+                .assertResultCount(0)
+                .assertOther();
+        target2.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(0)
+                .assertGlobalError(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
+                .assertOther();
+    }
 
-	@Test
-	public void globalErrorNotHandled() {
-		BaseTarget target = executeTask(new GlobalErrorNotHandledTarget(), new GlobalErrorTask());
-		target.createTargetTestResult()
-				.assertSubmittedCount(1)
-				.assertResultCount(1)
-				.assertTaskErrorFromGlobal(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
-				.assertOther();
-	}
+    @Test
+    public void globalErrorNotHandled() {
+        BaseTarget target = executeTask(new GlobalErrorNotHandledTarget(), new GlobalErrorTask());
+        target.createTargetTestResult()
+                .assertSubmittedCount(1)
+                .assertResultCount(1)
+                .assertTaskErrorFromGlobal(GlobalErrorTask.TASK_GLOBAL_ERROR_CODE)
+                .assertOther();
+    }
 
 
 }

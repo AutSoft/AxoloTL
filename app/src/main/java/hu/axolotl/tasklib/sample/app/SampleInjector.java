@@ -20,21 +20,21 @@ import hu.axolotl.tasklib.sample.app.task.SampleWorkerTaskHelper;
 
 public class SampleInjector {
 
-	// This is just a sample injector. In real cases, use dagger instead!
+    // This is just a sample injector. In real cases, use dagger instead!
 
-	@Injector
-	public static final SampleInjector injector = new SampleInjector();
+    @Injector
+    public static final SampleInjector injector = new SampleInjector();
 
-	private SampleWorker sampleWorker;
+    private SampleWorker sampleWorker;
 
-	private SampleWorker getSampleWorker() {
-		if (sampleWorker == null) {
-			sampleWorker = new SampleWorker();
-		}
-		return sampleWorker;
-	}
+    private SampleWorker getSampleWorker() {
+        if (sampleWorker == null) {
+            sampleWorker = new SampleWorker();
+        }
+        return sampleWorker;
+    }
 
-	public void inject(SampleWorkerTaskHelper sampleWorkerTaskHelper) {
-		sampleWorkerTaskHelper.setWorker(getSampleWorker());
-	}
+    public void inject(SampleWorkerTaskHelper sampleWorkerTaskHelper) {
+        sampleWorkerTaskHelper.setWorker(getSampleWorker());
+    }
 }

@@ -20,8 +20,8 @@ import hu.axolotl.tasklib.util.TaskLogger;
 
 public class AndroidTaskInitializer {
 
-	public static void init() {
-		TaskLogger.setCustomInstance(new AndroidTaskLogger());
-	}
+    public static void init() {
+        TaskLogger.setCustomInstance(new AndroidTaskLogger());
+    }
 
 }

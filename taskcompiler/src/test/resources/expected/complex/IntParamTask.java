@@ -6,24 +6,24 @@ import hu.axolotl.test.ComplexWorker;
 import hu.axolotl.test.task.ComplexWorkerTaskHelper;
 
 public class IntParamTask extends BaseRunTask<Void, Void> {
-	int param;
+    int param;
 
-	protected ComplexWorker worker;
+    protected ComplexWorker worker;
 
-	public IntParamTask(int param) {
-		ComplexWorkerTaskHelper helper = new ComplexWorkerTaskHelper();
-		worker = helper.getWorker();
-		setSchedulerId(0);
-		this.param = param;
-	}
+    public IntParamTask(int param) {
+        ComplexWorkerTaskHelper helper = new ComplexWorkerTaskHelper();
+        worker = helper.getWorker();
+        setSchedulerId(0);
+        this.param = param;
+    }
 
-	public int getParamParam() {
-		return this.param;
-	}
+    public int getParamParam() {
+        return this.param;
+    }
 
-	@Override
-	public Void run(TaskAgent<Void> agent) {
-		worker.intParam(param);
-		return null;
-	}
+    @Override
+    public Void run(TaskAgent<Void> agent) {
+        worker.intParam(param);
+        return null;
+    }
 }

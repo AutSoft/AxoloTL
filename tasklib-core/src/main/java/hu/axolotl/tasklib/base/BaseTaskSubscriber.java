@@ -25,58 +25,58 @@ import hu.axolotl.tasklib.util.TaskLogger;
 
 public abstract class BaseTaskSubscriber<T, U> implements Subscriber<RxTaskMessage<T, U>> {
 
-	public static final String LOG_TAG = BaseTaskSubscriber.class.getSimpleName();
+    public static final String LOG_TAG = BaseTaskSubscriber.class.getSimpleName();
 
-	@Override
-	public void onSubscribe(Subscription s) {
-		TaskLogger.d(LOG_TAG, "onSubscribe");
-		onStatusStarted();
-	}
+    @Override
+    public void onSubscribe(Subscription s) {
+        TaskLogger.d(LOG_TAG, "onSubscribe");
+        onStatusStarted();
+    }
 
-	@Override
-	public final void onNext(RxTaskMessage<T, U> message) {
-		if (message.isProgress()) {
-			TaskLogger.d(LOG_TAG, "onNext isProgress");
-			onTaskProgress(message.getProgressObject());
-		} else {
-			TaskLogger.d(LOG_TAG, "onNext isResult");
-			onStatusFinished();
-			onTaskResult(message.getResultObject());
-		}
-	}
+    @Override
+    public final void onNext(RxTaskMessage<T, U> message) {
+        if (message.isProgress()) {
+            TaskLogger.d(LOG_TAG, "onNext isProgress");
+            onTaskProgress(message.getProgressObject());
+        } else {
+            TaskLogger.d(LOG_TAG, "onNext isResult");
+            onStatusFinished();
+            onTaskResult(message.getResultObject());
+        }
+    }
 
-	@Override
-	public final void onError(Throwable t) {
-		onStatusFinished();
-		if (t instanceof BaseTaskException) {
-			BaseTaskException ex = (BaseTaskException) t;
-			boolean global = ex instanceof GlobalTaskException;
-			TaskLogger.d(LOG_TAG, "onError (global: " + global + ", code:" + ex.getErrorCode()
-					+ ", object: " + (ex.getErrorObject() == null ? "null" : ex.getErrorObject().getClass().getName()) + ")");
-			onTaskError(global, ex.getErrorCode(), ex.getErrorObject(), t);
-		} else {
-			TaskLogger.d(LOG_TAG, "onError other: " + t);
-			onTaskError(false, Integer.MAX_VALUE, null, t);
-		}
-	}
+    @Override
+    public final void onError(Throwable t) {
+        onStatusFinished();
+        if (t instanceof BaseTaskException) {
+            BaseTaskException ex = (BaseTaskException) t;
+            boolean global = ex instanceof GlobalTaskException;
+            TaskLogger.d(LOG_TAG, "onError (global: " + global + ", code:" + ex.getErrorCode()
+                    + ", object: " + (ex.getErrorObject() == null ? "null" : ex.getErrorObject().getClass().getName()) + ")");
+            onTaskError(global, ex.getErrorCode(), ex.getErrorObject(), t);
+        } else {
+            TaskLogger.d(LOG_TAG, "onError other: " + t);
+            onTaskError(false, Integer.MAX_VALUE, null, t);
+        }
+    }
 
-	@Override
-	public void onComplete() {
-		TaskLogger.d(LOG_TAG, "onComplete");
-	}
+    @Override
+    public void onComplete() {
+        TaskLogger.d(LOG_TAG, "onComplete");
+    }
 
-	protected abstract void onTaskProgress(U progress);
+    protected abstract void onTaskProgress(U progress);
 
-	protected abstract void onTaskResult(T resultObject);
+    protected abstract void onTaskResult(T resultObject);
 
-	protected abstract void onTaskError(boolean global, int errorCode, Object errorObject, Throwable exception);
+    protected abstract void onTaskError(boolean global, int errorCode, Object errorObject, Throwable exception);
 
-	protected void onStatusStarted() {
-		// Do nothing (so you don't have to override it all the time)
-	}
+    protected void onStatusStarted() {
+        // Do nothing (so you don't have to override it all the time)
+    }
 
-	protected void onStatusFinished() {
-		// Do nothing (so you don't have to override it all the time)
-	}
+    protected void onStatusFinished() {
+        // Do nothing (so you don't have to override it all the time)
+    }
 
 }

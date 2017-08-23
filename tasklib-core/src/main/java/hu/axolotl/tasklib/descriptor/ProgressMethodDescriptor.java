@@ -21,11 +21,11 @@ import hu.axolotl.tasklib.base.BaseTask;
 
 public class ProgressMethodDescriptor extends MethodDescriptor {
 
-	public ProgressMethodDescriptor(Class requestClass, Method method) {
-		super(requestClass, method);
-	}
+    public ProgressMethodDescriptor(Class requestClass, Method method) {
+        super(requestClass, method);
+    }
 
-	public void invoke(Object object, BaseTask baseTask, Object progress) throws InvokeException {
-		invokeMethod(object, baseTask, progress);
-	}
+    public void invoke(Object object, BaseTask baseTask, Object progress) throws InvokeException {
+        invokeMethod(object, baseTask, progress);
+    }
 }

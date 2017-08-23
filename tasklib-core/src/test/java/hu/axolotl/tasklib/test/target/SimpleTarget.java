@@ -21,11 +21,11 @@ import hu.axolotl.tasklib.test.util.UtilTestLogger;
 
 public class SimpleTarget extends BaseTarget {
 
-	public static final String TAG = SimpleTarget.class.getSimpleName();
+    public static final String TAG = SimpleTarget.class.getSimpleName();
 
-	void onTaskResult(SimpleTask task) {
-		UtilTestLogger.d(TAG, "onTaskResult: SimpleTask");
-		otr(task);
-	}
+    void onTaskResult(SimpleTask task) {
+        UtilTestLogger.d(TAG, "onTaskResult: SimpleTask");
+        otr(task);
+    }
 
 }

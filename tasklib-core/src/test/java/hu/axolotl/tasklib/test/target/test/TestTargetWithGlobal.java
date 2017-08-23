@@ -4,13 +4,13 @@ import hu.axolotl.tasklib.GlobalError;
 import hu.axolotl.tasklib.test.tasks.SimpleTask;
 
 public class TestTargetWithGlobal {
-	void onTaskResult(SimpleTask task) {
-	}
+    void onTaskResult(SimpleTask task) {
+    }
 
-	void onTaskProgress(SimpleTask task, Object progress) {
-	}
+    void onTaskProgress(SimpleTask task, Object progress) {
+    }
 
-	boolean onTaskGlobalError(GlobalError globalError) {
-		return true;
-	}
+    boolean onTaskGlobalError(GlobalError globalError) {
+        return true;
+    }
 }

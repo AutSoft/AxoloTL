@@ -20,23 +20,23 @@ import hu.axolotl.tasklib.exception.GlobalTaskException;
 
 public class GlobalErrorTask extends BaseTestTask {
 
-	public static final int TASK_GLOBAL_ERROR_CODE = 67;
+    public static final int TASK_GLOBAL_ERROR_CODE = 67;
 
-	private Object errorObject;
+    private Object errorObject;
 
-	public GlobalErrorTask() {
-	}
+    public GlobalErrorTask() {
+    }
 
-	public GlobalErrorTask(Object errorObject) {
-		this.errorObject = errorObject;
-	}
+    public GlobalErrorTask(Object errorObject) {
+        this.errorObject = errorObject;
+    }
 
-	@Override
-	public String run(TaskAgent agent) {
-		if (errorObject != null) {
-			throw new GlobalTaskException(TASK_GLOBAL_ERROR_CODE, errorObject);
-		} else {
-			throw new GlobalTaskException(TASK_GLOBAL_ERROR_CODE);
-		}
-	}
+    @Override
+    public String run(TaskAgent agent) {
+        if (errorObject != null) {
+            throw new GlobalTaskException(TASK_GLOBAL_ERROR_CODE, errorObject);
+        } else {
+            throw new GlobalTaskException(TASK_GLOBAL_ERROR_CODE);
+        }
+    }
 }

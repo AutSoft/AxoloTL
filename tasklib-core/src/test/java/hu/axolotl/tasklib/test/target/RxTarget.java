@@ -25,31 +25,31 @@ import hu.axolotl.tasklib.test.util.UtilTestLogger;
 
 public class RxTarget extends BaseTarget {
 
-	public static final String TAG = RxTarget.class.getSimpleName();
+    public static final String TAG = RxTarget.class.getSimpleName();
 
-	void onTaskResult(RxCompletableTask task) {
-		UtilTestLogger.d(TAG, "onTaskResult: RxCompletableTask");
-		otr(task);
-	}
+    void onTaskResult(RxCompletableTask task) {
+        UtilTestLogger.d(TAG, "onTaskResult: RxCompletableTask");
+        otr(task);
+    }
 
-	void onTaskResult(RxFlowableStringTask task) {
-		UtilTestLogger.d(TAG, "onTaskResult: RxFlowableStringTask");
-		otr(task);
-	}
+    void onTaskResult(RxFlowableStringTask task) {
+        UtilTestLogger.d(TAG, "onTaskResult: RxFlowableStringTask");
+        otr(task);
+    }
 
-	void onTaskResult(RxObservableIntegerTask task) {
-		UtilTestLogger.d(TAG, "onTaskResult: RxObservableIntegerTask");
-		otr(task);
-	}
+    void onTaskResult(RxObservableIntegerTask task) {
+        UtilTestLogger.d(TAG, "onTaskResult: RxObservableIntegerTask");
+        otr(task);
+    }
 
-	void onTaskResult(RxSingleDoubleTask task) {
-		UtilTestLogger.d(TAG, "onTaskResult: RxSingleDoubleTask");
-		otr(task);
-	}
+    void onTaskResult(RxSingleDoubleTask task) {
+        UtilTestLogger.d(TAG, "onTaskResult: RxSingleDoubleTask");
+        otr(task);
+    }
 
-	void onTaskResult(RxObservableIntegerMultipleResultTask task) {
-		UtilTestLogger.d(TAG, "onTaskResult: RxObservableIntegerMultipleResultTask");
-		otr(task);
-	}
+    void onTaskResult(RxObservableIntegerMultipleResultTask task) {
+        UtilTestLogger.d(TAG, "onTaskResult: RxObservableIntegerMultipleResultTask");
+        otr(task);
+    }
 
 }

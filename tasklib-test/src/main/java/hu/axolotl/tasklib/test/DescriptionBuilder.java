@@ -20,44 +20,44 @@ import org.hamcrest.StringDescription;
 
 public abstract class DescriptionBuilder {
 
-	public static String exceptionClassErrorStr(Class expected, Class actual) {
-		StringDescription sd = new StringDescription();
-		exceptionClassError(sd, expected, actual);
-		return sd.toString();
-	}
+    public static String exceptionClassErrorStr(Class expected, Class actual) {
+        StringDescription sd = new StringDescription();
+        exceptionClassError(sd, expected, actual);
+        return sd.toString();
+    }
 
-	public static void exceptionClassError(Description description, Class expected, Class actual) {
-		logValueMismatch(description, "Exception class error", expected, actual);
-	}
+    public static void exceptionClassError(Description description, Class expected, Class actual) {
+        logValueMismatch(description, "Exception class error", expected, actual);
+    }
 
-	public static String errorCodeMismatchStr(int expectedErrorCode, int actualErrorCode) {
-		StringDescription sd = new StringDescription();
-		errorCodeMismatch(sd, expectedErrorCode, actualErrorCode);
-		return sd.toString();
-	}
+    public static String errorCodeMismatchStr(int expectedErrorCode, int actualErrorCode) {
+        StringDescription sd = new StringDescription();
+        errorCodeMismatch(sd, expectedErrorCode, actualErrorCode);
+        return sd.toString();
+    }
 
-	public static void errorCodeMismatch(Description description, int expectedErrorCode, int actualErrorCode) {
-		logValueMismatch(description, "Error code mismatch", expectedErrorCode, actualErrorCode);
-	}
+    public static void errorCodeMismatch(Description description, int expectedErrorCode, int actualErrorCode) {
+        logValueMismatch(description, "Error code mismatch", expectedErrorCode, actualErrorCode);
+    }
 
-	public static String errorObjectMismatchStr(Object expectedErrorObject, Object actualErrorObject) {
-		StringDescription sd = new StringDescription();
-		errorObjectMismatch(sd, expectedErrorObject, actualErrorObject);
-		return sd.toString();
-	}
+    public static String errorObjectMismatchStr(Object expectedErrorObject, Object actualErrorObject) {
+        StringDescription sd = new StringDescription();
+        errorObjectMismatch(sd, expectedErrorObject, actualErrorObject);
+        return sd.toString();
+    }
 
-	public static void errorObjectMismatch(Description description, Object expectedErrorObject, Object actualErrorObject) {
-		logValueMismatch(description, "Error object mismatch", expectedErrorObject, actualErrorObject);
-	}
+    public static void errorObjectMismatch(Description description, Object expectedErrorObject, Object actualErrorObject) {
+        logValueMismatch(description, "Error object mismatch", expectedErrorObject, actualErrorObject);
+    }
 
-	private static void logValueMismatch(Description description, String message, Object expected, Object actual) {
-		description.appendText(message);
-		description.appendText("\n");
-		description.appendText("Expected: ");
-		description.appendValue(expected);
-		description.appendText("\n");
-		description.appendText("Actual: ");
-		description.appendValue(actual);
-		description.appendText("\n");
-	}
+    private static void logValueMismatch(Description description, String message, Object expected, Object actual) {
+        description.appendText(message);
+        description.appendText("\n");
+        description.appendText("Expected: ");
+        description.appendValue(expected);
+        description.appendText("\n");
+        description.appendText("Actual: ");
+        description.appendValue(actual);
+        description.appendText("\n");
+    }
 }

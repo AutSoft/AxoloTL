@@ -19,42 +19,42 @@ import hu.axolotl.tasklib.TaskAgent;
 
 public class ProgressTask extends BaseTestTask {
 
-	public static Object[] getProgresses() {
-		Object[] ret = new Object[4];
-		ret[0] = 1;
-		ret[1] = 2;
-		ret[2] = 3;
-		ret[3] = 4;
-		return ret;
-	}
+    public static Object[] getProgresses() {
+        Object[] ret = new Object[4];
+        ret[0] = 1;
+        ret[1] = 2;
+        ret[2] = 3;
+        ret[3] = 4;
+        return ret;
+    }
 
-	long progressIntervalInMs;
+    long progressIntervalInMs;
 
-	public ProgressTask() {
-		this(20);
-	}
+    public ProgressTask() {
+        this(20);
+    }
 
-	public ProgressTask(long progressIntervalInMs) {
-		this.progressIntervalInMs = progressIntervalInMs;
-	}
+    public ProgressTask(long progressIntervalInMs) {
+        this.progressIntervalInMs = progressIntervalInMs;
+    }
 
-	@Override
-	protected String run(TaskAgent agent) {
-		waitForProgressInterval();
-		for (Object o : getProgresses()) {
-			agent.publishProgress(o);
-			waitForProgressInterval();
-		}
-		return getClass().getSimpleName();
-	}
+    @Override
+    protected String run(TaskAgent agent) {
+        waitForProgressInterval();
+        for (Object o : getProgresses()) {
+            agent.publishProgress(o);
+            waitForProgressInterval();
+        }
+        return getClass().getSimpleName();
+    }
 
-	private void waitForProgressInterval() {
-		if (progressIntervalInMs > 0) {
-			try {
-				Thread.sleep(progressIntervalInMs);
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
-			}
-		}
-	}
+    private void waitForProgressInterval() {
+        if (progressIntervalInMs > 0) {
+            try {
+                Thread.sleep(progressIntervalInMs);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }

@@ -25,19 +25,19 @@ import io.reactivex.Single;
 
 public class TaskModelFactory {
 
-	public static BaseTaskModel getTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
-		TypeHelper returnType = TypeHelper.getTypeHelper(methodElement.getReturnType().toString());
-		if (returnType.isParameterized() && returnType.isClass(Observable.class)) {
-			return new ObservableTaskModel(workerClass, workerTaskHelperClass, methodElement);
-		} else if (returnType.isParameterized() && returnType.isClass(Flowable.class)) {
-			return new FlowableTaskModel(workerClass, workerTaskHelperClass, methodElement);
-		} else if (returnType.isParameterized() && returnType.isClass(Single.class)) {
-			return new SingleTaskModel(workerClass, workerTaskHelperClass, methodElement);
-		} else if (returnType.isClass(Completable.class)) {
-			return new CompletableTaskModel(workerClass, workerTaskHelperClass, methodElement);
-		} else {
-			return new RunTaskModel(workerClass, workerTaskHelperClass, methodElement);
-		}
-	}
+    public static BaseTaskModel getTaskModel(TypeHelper workerClass, TypeHelper workerTaskHelperClass, ExecutableElement methodElement) {
+        TypeHelper returnType = TypeHelper.getTypeHelper(methodElement.getReturnType().toString());
+        if (returnType.isParameterized() && returnType.isClass(Observable.class)) {
+            return new ObservableTaskModel(workerClass, workerTaskHelperClass, methodElement);
+        } else if (returnType.isParameterized() && returnType.isClass(Flowable.class)) {
+            return new FlowableTaskModel(workerClass, workerTaskHelperClass, methodElement);
+        } else if (returnType.isParameterized() && returnType.isClass(Single.class)) {
+            return new SingleTaskModel(workerClass, workerTaskHelperClass, methodElement);
+        } else if (returnType.isClass(Completable.class)) {
+            return new CompletableTaskModel(workerClass, workerTaskHelperClass, methodElement);
+        } else {
+            return new RunTaskModel(workerClass, workerTaskHelperClass, methodElement);
+        }
+    }
 
 }

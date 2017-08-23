@@ -20,8 +20,8 @@ import hu.axolotl.tasklib.test.tasks.InvalidTaskErrorCodeTask;
 
 public class InvalidTaskErrorCodeTarget extends BaseTarget {
 
-	void onTaskResult(InvalidTaskErrorCodeTask task) {
-		otr(task);
-	}
+    void onTaskResult(InvalidTaskErrorCodeTask task) {
+        otr(task);
+    }
 
 }

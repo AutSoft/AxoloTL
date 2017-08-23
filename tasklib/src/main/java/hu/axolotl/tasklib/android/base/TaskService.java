@@ -22,22 +22,22 @@ import hu.axolotl.tasklib.base.BaseTask;
 
 public abstract class TaskService extends Service {
 
-	TaskEngineHolder holder;
+    TaskEngineHolder holder;
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		holder = new TaskEngineHolder(this);
-		holder.start();
-	}
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        holder = new TaskEngineHolder(this);
+        holder.start();
+    }
 
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		holder.stop();
-	}
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        holder.stop();
+    }
 
-	public <T, U> void executeTask(BaseTask<T, U> task) {
-		holder.executeTask(task);
-	}
+    public <T, U> void executeTask(BaseTask<T, U> task) {
+        holder.executeTask(task);
+    }
 }

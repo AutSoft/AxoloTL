@@ -22,18 +22,18 @@ import io.reactivex.functions.Function;
 
 public abstract class BaseSingleTask<T> extends BaseTask<T, Void> {
 
-	@Override
-	public final Flowable<RxTaskMessage<T, Void>> createFlowable() {
-		return getRunSingle()
-				.map(new Function<T, RxTaskMessage<T, Void>>() {
-					@Override
-					public RxTaskMessage<T, Void> apply(T t) {
-						return RxTaskMessage.createResult(t);
-					}
-				})
-				.toFlowable();
-	}
+    @Override
+    public final Flowable<RxTaskMessage<T, Void>> createFlowable() {
+        return getRunSingle()
+                .map(new Function<T, RxTaskMessage<T, Void>>() {
+                    @Override
+                    public RxTaskMessage<T, Void> apply(T t) {
+                        return RxTaskMessage.createResult(t);
+                    }
+                })
+                .toFlowable();
+    }
 
-	protected abstract Single<T> getRunSingle();
+    protected abstract Single<T> getRunSingle();
 
 }

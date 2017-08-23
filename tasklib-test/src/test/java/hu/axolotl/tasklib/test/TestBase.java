@@ -21,18 +21,18 @@ import static org.junit.Assert.assertEquals;
 
 abstract class TestBase {
 
-	void assertMatcherOk(TaskExceptionMatcher matcher, Exception exception) {
-		assertMatcher(false, matcher, exception, "");
-	}
+    void assertMatcherOk(TaskExceptionMatcher matcher, Exception exception) {
+        assertMatcher(false, matcher, exception, "");
+    }
 
-	void assertMatcherError(TaskExceptionMatcher matcher, Exception exception, String expectedString) {
-		assertMatcher(true, matcher, exception, expectedString);
-	}
+    void assertMatcherError(TaskExceptionMatcher matcher, Exception exception, String expectedString) {
+        assertMatcher(true, matcher, exception, expectedString);
+    }
 
-	private void assertMatcher(boolean error, TaskExceptionMatcher matcher, Exception exception, String expectedString) {
-		assertEquals(!error, matcher.matches(exception));
-		StringDescription sd = new StringDescription();
-		matcher.describeTo(sd);
-		assertEquals(expectedString, sd.toString());
-	}
+    private void assertMatcher(boolean error, TaskExceptionMatcher matcher, Exception exception, String expectedString) {
+        assertEquals(!error, matcher.matches(exception));
+        StringDescription sd = new StringDescription();
+        matcher.describeTo(sd);
+        assertEquals(expectedString, sd.toString());
+    }
 }

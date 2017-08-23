@@ -25,30 +25,30 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class ButtonMenuLayout extends LinearLayout {
-	public ButtonMenuLayout(Context context) {
-		super(context);
-	}
+    public ButtonMenuLayout(Context context) {
+        super(context);
+    }
 
-	public ButtonMenuLayout(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public ButtonMenuLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public ButtonMenuLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public ButtonMenuLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public ButtonMenuLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public ButtonMenuLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	public void addMenuItem(String label, View.OnClickListener onClickListener) {
-		Button button = new Button(getContext());
-		button.setText(label);
-		button.setOnClickListener(onClickListener);
-		LayoutParams lp = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-		addView(button, lp);
-	}
+    public void addMenuItem(String label, View.OnClickListener onClickListener) {
+        Button button = new Button(getContext());
+        button.setText(label);
+        button.setOnClickListener(onClickListener);
+        LayoutParams lp = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+        addView(button, lp);
+    }
 
 
 }

@@ -23,22 +23,22 @@ import static hu.axolotl.tasklib.test.TestObject.TEST_ERROR_CODE;
 
 public class GlobalTaskExceptionOkTest extends TestBase {
 
-	@Test
-	public void code() {
-		assertMatcherOk(TaskExceptionMatcher.globalCodeWithoutObjectCheck(TEST_ERROR_CODE),
-				new GlobalTaskException(TEST_ERROR_CODE));
-	}
+    @Test
+    public void code() {
+        assertMatcherOk(TaskExceptionMatcher.globalCodeWithoutObjectCheck(TEST_ERROR_CODE),
+                new GlobalTaskException(TEST_ERROR_CODE));
+    }
 
-	@Test
-	public void codeWithNullObject() {
-		assertMatcherOk(TaskExceptionMatcher.globalCodeWithNullObject(TEST_ERROR_CODE),
-				new GlobalTaskException(TEST_ERROR_CODE));
-	}
+    @Test
+    public void codeWithNullObject() {
+        assertMatcherOk(TaskExceptionMatcher.globalCodeWithNullObject(TEST_ERROR_CODE),
+                new GlobalTaskException(TEST_ERROR_CODE));
+    }
 
-	@Test
-	public void codeWithObject() {
-		assertMatcherOk(TaskExceptionMatcher.globalCodeWithObject(TEST_ERROR_CODE, TestObject.create()),
-				new GlobalTaskException(TEST_ERROR_CODE, TestObject.create()));
-	}
+    @Test
+    public void codeWithObject() {
+        assertMatcherOk(TaskExceptionMatcher.globalCodeWithObject(TEST_ERROR_CODE, TestObject.create()),
+                new GlobalTaskException(TEST_ERROR_CODE, TestObject.create()));
+    }
 
 }
