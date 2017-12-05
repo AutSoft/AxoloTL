@@ -4,12 +4,12 @@ Axolo Task Library
 ## Dependencies (from jitpack)
 
 ```
-compile 'com.github.AutSoft.AxoloTL:compiler-core:1.0.1'
-compile 'com.github.AutSoft.AxoloTL:tasklib:1.0.1'
-compile 'com.github.AutSoft.AxoloTL:tasklib-core:1.0.1'
-compile 'com.github.AutSoft.AxoloTL:tasklib-stetho:1.0.1'
-testCompile 'com.github.AutSoft.AxoloTL:tasklib-test:1.0.1'
-annotationProcessor 'com.github.AutSoft.AxoloTL:taskcompiler:1.0.1'
+compile "com.github.AutSoft.AxoloTL:compiler-core:${axolotlVersion}"
+compile "com.github.AutSoft.AxoloTL:tasklib:${axolotlVersion}"
+compile "com.github.AutSoft.AxoloTL:tasklib-core:${axolotlVersion}"
+compile "com.github.AutSoft.AxoloTL:tasklib-stetho:${axolotlVersion}"
+testCompile "com.github.AutSoft.AxoloTL:tasklib-test:${axolotlVersion}"
+annotationProcessor "com.github.AutSoft.AxoloTL:taskcompiler:${axolotlVersion}"
 ```
 
 ## Task creation
@@ -116,7 +116,7 @@ holder.executeTask(new FirstTask(3), , new InlineTaskListener<String, Void>() {
 });
 ```
 
-## Error
+## Error: Task Exception
 
 In the worker function you can throw any `RuntimeException`.
 If any exception thrown, then the `task.hasError()` function will return true.
@@ -187,9 +187,22 @@ protected void onTaskProgress(LongRunningTask task, String progress) {
 }
 ```
 
-## Global Error
+## Global Task Exception
 
-FIXME
+Global task exception is similar to the simple task exception. The main difference is that you can handle global errors in any target which is held by a TaskEngineHolder:
+
+```java
+public boolean onTaskGlobalError(GlobalError error) {
+    if (error.getErrorCode() == SOME_CODE) {
+        // handle global error
+        return true;
+    }
+    return false;
+}
+```
+
+TaskLib try to call the onTaskGlobalError method in the target which is executed the task with global error. If it is unsuccessful or the error is not handled then it will call the other targets in unspecified order. If any onTaskGlobalError method returns true then the global error is handled and there won't be any effect of the execution of the task (no onTaskResult or other call).
+If non of the onTaskGlobalError method returns true then the global task exception is handled like it was a simple task exception (onTaskResult call with hasError and errorCode).
 
 ## Follow Task
 
@@ -228,7 +241,17 @@ TaskSchedulers.registerScheduler(MyCustomSchedulers.MY_SCHEDULER, Schedulers.new
 
 ## Dagger compatibility
 
-FIXME
+For dagger injection you have to annotate your injector static instance with hu.axolotl.tasklib.annotation.Injector annotation.
+
+```java
+@Injector
+public static AppComponent injector;
+```
+
+In the AppComponent interface you have to declare a new method for the helpers of each worker. For example if you have a ProfileWorker then the lib will generate a ProfileWorkerTaskHelper class, so you have to add:
+```java
+void inject(FriendsWorkerTaskHelper friendsWorkerTaskHelper);
+```
 
 ## Rx support
 
