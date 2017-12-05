@@ -4,14 +4,14 @@ include ':app', ':tasklib', ':taskcompiler', ':tasklib-core', ':compiler-core', 
 gradle.ext.githubGroup = "com.github.AutSoft"
 
 
-gradle.ext.buildToolsVersion = "25.0.2"
-gradle.ext.compileSdkVersion = 25
+gradle.ext.buildToolsVersion = "26.0.2"
+gradle.ext.compileSdkVersion = 26
 gradle.ext.minSdkVersion = 14
-gradle.ext.targetSdkVersion = 25
+gradle.ext.targetSdkVersion = 26
 
 gradle.ext.jacoco_version = "0.7.7.201606060606"
 
-gradle.ext.dep_appcompat = 'com.android.support:appcompat-v7:25.2.0'
+gradle.ext.dep_appcompat = 'com.android.support:appcompat-v7:26.1.0'
 gradle.ext.dep_junit = 'junit:junit:4.12'
 gradle.ext.dep_rxjava = 'io.reactivex.rxjava2:rxjava:2.0.2'
 gradle.ext.dep_googleTruth = 'com.google.truth:truth:0.32'
